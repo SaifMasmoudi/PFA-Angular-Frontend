@@ -1,0 +1,11 @@
+<h2>Liste des Niveaux</h2>
+
+<ul>
+  <li *ngFor="let niveau of niveaux">
+    {{ niveau.nom_niveau }}
+    <button *ngIf="niveau.id !== undefined" (click)="deleteNiveau(niveau.id)">Supprimer</button>
+    <button *ngIf="niveau.id !== undefined" (click)="editNiveau(niveau)">Editer</button>
+  </li>
+</ul>
+
+<button routerLink="/create-niveau">Ajouter un Nouveau Niveau</button>

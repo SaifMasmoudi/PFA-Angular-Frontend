@@ -1,0 +1,17 @@
+<div *ngIf="matiereToEdit">
+    <h2>Editer la Matière</h2>
+    <form (submit)="updateMatiere()">
+      <label>
+        Nom de la Matière:
+        <input type="text" [(ngModel)]="matiereToEdit.nom_matiere" name="nom_matiere" required>
+      </label>
+      <label>
+        Description:
+        <textarea [(ngModel)]="matiereToEdit.description" name="description" required></textarea>
+      </label>
+      <button type="submit">Mettre à jour</button>
+    </form>
+  </div>
+  
+  <button routerLink="/matieres">Retour à la Liste</button>
+  

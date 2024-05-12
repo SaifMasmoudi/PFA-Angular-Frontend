@@ -1,0 +1,21 @@
+<div *ngIf="niveauMatiereToEdit">
+    <h2>Editer l'Association Niveau-Matière</h2>
+    <form (submit)="updateNiveauMatiere()">
+      <label>
+        Niveau:
+        <select [(ngModel)]="niveauMatiereToEdit.id_niveau" name="id_niveau" required>
+          <option *ngFor="let niveau of niveaux" [value]="niveau.id">{{ niveau.nom_niveau }}</option>
+        </select>
+      </label>
+      <label>
+        Matière:
+        <select [(ngModel)]="niveauMatiereToEdit.id_matiere" name="id_matiere" required>
+          <option *ngFor="let matiere of matieres" [value]="matiere.id">{{ matiere.nom_matiere }}</option>
+        </select>
+      </label>
+      <button type="submit">Mettre à jour</button>
+    </form>
+  </div>
+  
+  <button routerLink="/niveau-matieres">Retour à la Liste</button>
+  

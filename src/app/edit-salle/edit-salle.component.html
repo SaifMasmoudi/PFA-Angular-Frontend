@@ -1,0 +1,16 @@
+<div *ngIf="salleToEdit">
+  <h2>Editer la Salle</h2>
+  <form (submit)="updateSalle()">
+    <label>
+      Numéro de Salle:
+      <input type="text" [(ngModel)]="salleToEdit.num_salle" name="num_salle" required>
+    </label>
+    <label>
+      Capacité:
+      <input type="text" [(ngModel)]="salleToEdit.capacite" name="capacite" required>
+    </label>
+    <button type="submit">Mettre à jour</button>
+  </form>
+</div>
+
+<button routerLink="/salle">Retour à la Liste</button>

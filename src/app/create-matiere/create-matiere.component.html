@@ -1,0 +1,15 @@
+<h2>Ajouter une Nouvelle Matière</h2>
+
+<form (submit)="createMatiere(nom_matiere.value, description.value)">
+  <label>
+    Nom de la Matière:
+    <input type="text" #nom_matiere required>
+  </label>
+  <label>
+    Description:
+    <textarea #description required></textarea>
+  </label>
+  <button type="submit">Ajouter Matière</button>
+</form>
+
+<button routerLink="/matieres">Retour à la Liste</button>

@@ -1,0 +1,11 @@
+<h2>Liste des Associations Niveau-Matière</h2>
+
+<ul>
+  <li *ngFor="let niveauMatiere of niveauMatieres">
+    Niveau: {{ niveauMatiere.id_niveau }} - Matière: {{ niveauMatiere.id_matiere }}
+    <button *ngIf="niveauMatiere.id !== undefined" (click)="deleteNiveauMatiere(niveauMatiere.id)">Supprimer</button>
+    <button *ngIf="niveauMatiere.id !== undefined" (click)="editNiveauMatiere(niveauMatiere)">Editer</button>
+  </li>
+</ul>
+
+<button routerLink="/create-niveau-matiere">Ajouter une Nouvelle Association</button>

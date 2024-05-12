@@ -1,0 +1,11 @@
+<h2>Liste des Groupes</h2>
+
+<ul>
+  <li *ngFor="let groupe of groupes">
+    {{ groupe.nom_groupe }} - Niveau: {{ groupe.niveaux.nom_niveau }}
+    <button *ngIf="groupe.id !== undefined" (click)="deleteGroupe(groupe.id)">Supprimer</button>
+    <button *ngIf="groupe.id !== undefined" (click)="editGroupe(groupe)">Editer</button>
+  </li>
+</ul>
+
+<button routerLink="/create-groupe">Ajouter un Nouveau Groupe</button>

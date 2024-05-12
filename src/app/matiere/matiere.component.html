@@ -1,0 +1,11 @@
+<h2>Liste des Matières</h2>
+
+<ul>
+  <li *ngFor="let matiere of matieres">
+    {{ matiere.nom_matiere }} - {{ matiere.description }}
+    <button *ngIf="matiere.id !== undefined" (click)="deleteMatiere(matiere.id)">Supprimer</button>
+    <button *ngIf="matiere.id !== undefined" (click)="editMatiere(matiere)">Editer</button>
+  </li>
+</ul>
+
+<button routerLink="/create-matiere">Ajouter une Nouvelle Matière</button>

@@ -1,0 +1,24 @@
+{
+    "members":[
+        {
+        "id":"123456",
+       "cin":"1234560",
+       "name":"khadija",
+      "cv":"https://www.cdc.gov/polio/stop/pdf/stop-cv-format.pdf",
+      "type":"Teacher",
+      "createdDate":"12/01/2023"
+        },
+        {
+            "id":"123568",
+            "cin":"1234560",
+             "name":"Emna",
+             "cv":"https://www.cdc.gov/polio/stop/pdf/stop-cv-format.pdf",
+            "type":"scientifique",
+            "createdDate":"12/01/2023"
+           
+          
+        } 
+         
+    ]
+    
+}
