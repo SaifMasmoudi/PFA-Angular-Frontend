@@ -1,0 +1,17 @@
+<h2>Modifier une Prime</h2>
+
+<form (ngSubmit)="updatePrime()">
+  <div>
+    <label for="montant_prime">Montant de la Prime :</label>
+    <input type="text" id="montant_prime" [(ngModel)]="prime.montant_prime" name="montant_prime" required>
+  </div>
+  <div>
+    <label for="id_enseignant">Enseignant :</label>
+    <select id="id_enseignant" [(ngModel)]="prime.id_enseignant" name="id_enseignant" required>
+      <option *ngFor="let enseignant of enseignants" [value]="enseignant.id">
+        {{ enseignant.nom_enseignant }} {{ enseignant.prenom_enseignant }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">Mettre à Jour</button>
+</form>

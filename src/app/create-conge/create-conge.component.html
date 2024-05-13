@@ -1,0 +1,25 @@
+<h2>Ajouter un congé</h2>
+
+<form (ngSubmit)="createConge()">
+  <div>
+    <label for="type_conge">Type de congé :</label>
+    <input type="text" id="type_conge" [(ngModel)]="conge.type_conge" name="type_conge" required>
+  </div>
+  <div>
+    <label for="date_debut">Date de début :</label>
+    <input type="text" id="date_debut" [(ngModel)]="conge.date_debut" name="date_debut" required>
+  </div>
+  <div>
+    <label for="date_fin">Date de fin :</label>
+    <input type="text" id="date_fin" [(ngModel)]="conge.date_fin" name="date_fin" required>
+  </div>
+  <div>
+    <label for="id_enseignant">Enseignant :</label>
+    <select id="id_enseignant" [(ngModel)]="conge.id_enseignant" name="id_enseignant" required>
+      <option *ngFor="let enseignant of enseignants" [value]="enseignant.id">
+        {{ enseignant.nom_enseignant }} {{ enseignant.prenom_enseignant }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">Créer</button>
+</form>

@@ -1,0 +1,29 @@
+<h2>Ajouter un examen</h2>
+
+<form (ngSubmit)="createExamen()">
+  <div>
+    <label for="nom_examen">Nom de l'examen :</label>
+    <input type="text" id="nom_examen" [(ngModel)]="newExamen.nom_examen" name="nom_examen" required>
+  </div>
+  <div>
+    <label for="date_examen">Date de l'examen :</label>
+    <input type="date" id="date_examen" [(ngModel)]="newExamen.date_examen" name="date_examen" required>
+  </div>
+  <div>
+    <label for="heure_debut">Heure de début :</label>
+    <input type="time" id="heure_debut" [(ngModel)]="newExamen.heure_debut" name="heure_debut" required>
+  </div>
+  <div>
+    <label for="heure_fin">Heure de fin :</label>
+    <input type="time" id="heure_fin" [(ngModel)]="newExamen.heure_fin" name="heure_fin" required>
+  </div>
+  <div>
+    <label for="id_niveau_matiere">Niveau / Matière :</label>
+    <select id="id_niveau_matiere" [(ngModel)]="newExamen.id_niveau_matiere" name="id_niveau_matiere" required>
+      <option *ngFor="let niveauMatiere of niveauMatieres" [value]="niveauMatiere.id">
+        {{ niveauMatiere.id }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">Créer</button>
+</form>

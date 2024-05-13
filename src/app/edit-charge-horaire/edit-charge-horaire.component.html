@@ -1,0 +1,26 @@
+<h2>Modifier une charge horaire</h2>
+
+<form (ngSubmit)="updateChargeHoraire()">
+  <div>
+    <label for="nb_heure">Nombre d'heures :</label>
+    <input type="text" id="nb_heure" [(ngModel)]="chargeHoraire.nb_heure" name="nb_heure" required>
+  </div>
+  <div>
+    <label for="id_niveau_matiere">Niveau / Matière :</label>
+    <select id="id_niveau_matiere" [(ngModel)]="chargeHoraire.id_niveau_matiere" name="id_niveau_matiere" required>
+      <option *ngFor="let niveauMatiere of niveauMatieres" [value]="niveauMatiere.id">
+        {{ niveauMatiere.id }}
+      </option>
+    </select>
+  </div>
+  
+  <div>
+    <label for="id_enseignant">Enseignant :</label>
+    <select id="id_enseignant" [(ngModel)]="chargeHoraire.id_enseignant" name="id_enseignant" required>
+      <option *ngFor="let enseignant of enseignants" [value]="enseignant.id">
+        {{ enseignant.nom_enseignant }} {{ enseignant.prenom_enseignant }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">Mettre à jour</button>
+</form>

@@ -43,6 +43,24 @@ import { CreateMatiereComponent } from './create-matiere/create-matiere.componen
 import { CreateNiveauMatiereComponent } from './create-niveau-matiere/create-niveau-matiere.component';
 import { EditNiveauMatiereComponent } from './edit-niveau-matiere/edit-niveau-matiere.component';
 import { NiveauMatiereComponent } from './niveau-matiere/niveau-matiere.component';
+import { ExamenComponent } from './examen/examen.component';
+import { CreateExamenComponent } from './create-examen/create-examen.component';
+import { EditExamenComponent } from './edit-examen/edit-examen.component';
+import { EnseignantComponent } from './enseignant/enseignant.component';
+import { EditEnseignantComponent } from './edit-enseignant/edit-enseignant.component';
+import { CreateEnseignantComponent } from './create-enseignant/create-enseignant.component';
+import { PrimeComponent } from './prime/prime.component';
+import { CreatePrimeComponent } from './create-prime/create-prime.component';
+import { EditPrimeComponent } from './edit-prime/edit-prime.component';
+import { CongeComponent } from './conge/conge.component';
+import { EditCongeComponent } from './edit-conge/edit-conge.component';
+import { CreateCongeComponent } from './create-conge/create-conge.component';
+import { ChargeHoraireComponent } from './charge-horaire/charge-horaire.component';
+import { CreateChargeHoraireComponent } from './create-charge-horaire/create-charge-horaire.component';
+import { EditChargeHoraireComponent } from './edit-charge-horaire/edit-charge-horaire.component';
+import { AnneeUniversitaireComponent } from './annee-universitaire/annee-universitaire.component';
+import { EditAnneeUniversitaireComponent } from './edit-annee-universitaire/edit-annee-universitaire.component';
+import { CreateAnneeUniversitaireComponent } from './create-annee-universitaire/create-annee-universitaire.component';
 
 
 
@@ -70,6 +88,24 @@ import { NiveauMatiereComponent } from './niveau-matiere/niveau-matiere.componen
     CreateNiveauMatiereComponent,
     EditNiveauMatiereComponent,
     NiveauMatiereComponent,
+    ExamenComponent,
+    CreateExamenComponent,
+    EditExamenComponent,
+    EnseignantComponent,
+    EditEnseignantComponent,
+    CreateEnseignantComponent,
+    PrimeComponent,
+    CreatePrimeComponent,
+    EditPrimeComponent,
+    CongeComponent,
+    EditCongeComponent,
+    CreateCongeComponent,
+    ChargeHoraireComponent,
+    CreateChargeHoraireComponent,
+    EditChargeHoraireComponent,
+    AnneeUniversitaireComponent,
+    EditAnneeUniversitaireComponent,
+    CreateAnneeUniversitaireComponent,
     
   ],
   imports: [ MatTableModule,

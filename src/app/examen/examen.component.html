@@ -1,0 +1,29 @@
+<h2>Liste des examens</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom de l'examen</th>
+      <th>Date de l'examen</th>
+      <th>Heure de début</th>
+      <th>Heure de fin</th>
+      <th>Niveau / Matière</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let examen of examens">
+      <td>{{ examen.nom_examen }}</td>
+      <td>{{ examen.date_examen }}</td>
+      <td>{{ examen.heure_debut }}</td>
+      <td>{{ examen.heure_fin }}</td>
+      <td>{{ examen.id_niveau_matiere }}</td>
+      <td>
+        <button *ngIf="examen.id !== undefined" (click)="editExamen(examen.id)">Modifier</button>
+        <button *ngIf="examen.id !== undefined" (click)="deleteExamen(examen.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button routerLink="/create-examen">Ajouter un examen</button>

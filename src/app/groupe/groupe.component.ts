@@ -42,4 +42,8 @@ export class GroupeComponent {
   editGroupe(groupe: Groupe): void {
     this.router.navigate(['/edit-groupe', groupe.id]);
   }
+  getNiveauName(idNiveau: number): string {
+    const niveau = this.niveaux.find(n => n.id === idNiveau);
+    return niveau ? niveau.nom_niveau : '';
+  }
 }

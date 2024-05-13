@@ -1,0 +1,12 @@
+<h2>Liste des Primes</h2>
+
+<ul>
+  <li *ngFor="let prime of primes">
+    Montant de la Prime : {{ prime.montant_prime }} - Enseignant : {{ getEnseignantName(prime.id_enseignant) }}
+    <button *ngIf="prime.id !== undefined" (click)="deletePrime(prime.id)">Supprimer</button>
+    <button *ngIf="prime.id !== undefined" (click)="editPrime(prime)">Editer</button>
+
+  </li>
+</ul>
+
+<button routerLink="/create-prime">Ajouter une Nouvelle Prime</button>

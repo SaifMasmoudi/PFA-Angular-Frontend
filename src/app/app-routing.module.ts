@@ -18,6 +18,24 @@ import { EditMatiereComponent } from './edit-matiere/edit-matiere.component';
 import { NiveauMatiereComponent } from './niveau-matiere/niveau-matiere.component';
 import { CreateNiveauMatiereComponent } from './create-niveau-matiere/create-niveau-matiere.component';
 import { EditNiveauMatiereComponent } from './edit-niveau-matiere/edit-niveau-matiere.component';
+import { ExamenComponent } from './examen/examen.component';
+import { CreateExamenComponent } from './create-examen/create-examen.component';
+import { EditExamenComponent } from './edit-examen/edit-examen.component';
+import { CreateEnseignantComponent } from './create-enseignant/create-enseignant.component';
+import { EditEnseignantComponent } from './edit-enseignant/edit-enseignant.component';
+import { EnseignantComponent } from './enseignant/enseignant.component';
+import { PrimeComponent } from './prime/prime.component';
+import { CreatePrimeComponent } from './create-prime/create-prime.component';
+import { EditPrimeComponent } from './edit-prime/edit-prime.component';
+import { CongeComponent } from './conge/conge.component';
+import { CreateCongeComponent } from './create-conge/create-conge.component';
+import { EditCongeComponent } from './edit-conge/edit-conge.component';
+import { ChargeHoraireComponent } from './charge-horaire/charge-horaire.component';
+import { CreateChargeHoraireComponent } from './create-charge-horaire/create-charge-horaire.component';
+import { EditChargeHoraireComponent } from './edit-charge-horaire/edit-charge-horaire.component';
+import { AnneeUniversitaireComponent } from './annee-universitaire/annee-universitaire.component';
+import { CreateAnneeUniversitaireComponent } from './create-annee-universitaire/create-annee-universitaire.component';
+import { EditAnneeUniversitaireComponent } from './edit-annee-universitaire/edit-annee-universitaire.component';
 const routes: Routes = [
   {
     path:'login',
@@ -27,19 +45,43 @@ const routes: Routes = [
   { path: 'groupes', component: GroupeComponent },
   { path: 'create-groupe', component: CreateGroupeComponent },
   { path: 'edit-groupe/:id', component: EditGroupeComponent },
+
   { path: 'matieres', component: MatiereComponent },
   { path: 'create-matiere', component: CreateMatiereComponent },
   { path: 'edit-matiere/:id', component: EditMatiereComponent },
+
   { path: 'niveaux', component: NiveauComponent },
   { path: 'create-niveau', component: CreateNiveauComponent },
   { path: 'edit-niveau/:id', component: EditNiveauComponent },
+
   { path: 'niveau-matieres', component: NiveauMatiereComponent },
   { path: 'create-niveau-matiere', component: CreateNiveauMatiereComponent },
   { path: 'edit-niveau-matiere/:id', component: EditNiveauMatiereComponent },
+
+  { path: 'examens', component: ExamenComponent },
+  { path: 'create-examen', component: CreateExamenComponent },
+  { path: 'edit-examen/:id', component: EditExamenComponent },
+
+  { path: 'enseignants', component: EnseignantComponent },
+  { path: 'create-enseignant', component: CreateEnseignantComponent },
+  { path: 'edit-enseignant/:id', component: EditEnseignantComponent },
+
+  { path: 'conges', component: CongeComponent },
+  { path: 'create-conge', component: CreateCongeComponent },
+  { path: 'edit-conge/:id', component: EditCongeComponent },
+  
+  { path:'salle', pathMatch:'full', component:SalleComponent },
   {
-    path:'salle',
-    pathMatch:'full',
-    component:SalleComponent
+    path: 'primes',
+    component: PrimeComponent
+  },
+  {
+    path: 'create-prime',
+    component: CreatePrimeComponent
+  },
+  {
+    path: 'edit-prime/:id',
+    component: EditPrimeComponent
   },
   {
     path:'create-salle',
@@ -67,11 +109,17 @@ const routes: Routes = [
     redirectTo:'members'
 
   },
+  { path: 'charge-horaires', component: ChargeHoraireComponent },
+  { path: 'create-charge-horaire', component: CreateChargeHoraireComponent },
+  { path: 'edit-charge-horaire/:id', component: EditChargeHoraireComponent },
   {
    path:':id/edit',
    pathMatch:"full",
    component: MemberFormComponent
   },
+  { path: 'annee-universitaires', component: AnneeUniversitaireComponent },
+  { path: 'create-annee-universitaire', component: CreateAnneeUniversitaireComponent },
+  { path: 'edit-annee-universitaire/:id', component: EditAnneeUniversitaireComponent },
 ];
 
 @NgModule({

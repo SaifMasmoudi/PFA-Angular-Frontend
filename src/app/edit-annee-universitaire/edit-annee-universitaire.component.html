@@ -1,0 +1,17 @@
+<h2>Modifier une année universitaire</h2>
+
+<form (ngSubmit)="updateAnneeUniversitaire()">
+  <div>
+    <label for="nom_annee">Nom de l'année :</label>
+    <input type="text" id="nom_annee" [(ngModel)]="anneeUniversitaire.nom_annee" name="nom_annee" required>
+  </div>
+  <div>
+    <label for="id_charge_horaire">Charge horaire :</label>
+    <select id="id_charge_horaire" [(ngModel)]="anneeUniversitaire.id_charge_horaire" name="id_charge_horaire" required>
+      <option *ngFor="let chargeHoraire of chargeHoraires" [value]="chargeHoraire.id">
+        {{ chargeHoraire.id }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">Mettre à jour</button>
+</form>

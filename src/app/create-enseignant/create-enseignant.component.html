@@ -1,0 +1,21 @@
+<h2>Ajouter un Nouvel Enseignant</h2>
+
+<form (ngSubmit)="createEnseignant()">
+  <div>
+    <label for="nom_enseignant">Nom :</label>
+    <input type="text" id="nom_enseignant" [(ngModel)]="enseignant.nom_enseignant" name="nom_enseignant" required>
+  </div>
+  <div>
+    <label for="prenom_enseignant">Prénom :</label>
+    <input type="text" id="prenom_enseignant" [(ngModel)]="enseignant.prenom_enseignant" name="prenom_enseignant" required>
+  </div>
+  <div>
+    <label for="num_tel">Numéro de Téléphone :</label>
+    <input type="text" id="num_tel" [(ngModel)]="enseignant.num_tel" name="num_tel" required>
+  </div>
+  <div>
+    <label for="email">Email :</label>
+    <input type="email" id="email" [(ngModel)]="enseignant.email" name="email" required>
+  </div>
+  <button type="submit">Créer</button>
+</form>

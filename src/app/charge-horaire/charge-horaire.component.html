@@ -1,0 +1,25 @@
+<h2>Liste des charges horaires</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre d'heures</th>
+      <th>Niveau / Matière</th>
+      <th>Enseignant</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let chargeHoraire of chargeHoraires">
+      <td>{{ chargeHoraire.nb_heure }}</td>
+      <td>{{ chargeHoraire.id_niveau_matiere }}</td>
+      <td>{{ chargeHoraire.id_enseignant }}</td>
+      <td>
+        <button *ngIf="chargeHoraire.id !== undefined" (click)="editChargeHoraire(chargeHoraire.id)">Modifier</button>
+        <button *ngIf="chargeHoraire.id !== undefined" (click)="deleteChargeHoraire(chargeHoraire.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button routerLink="/create-charge-horaire">Ajouter une charge horaire</button>

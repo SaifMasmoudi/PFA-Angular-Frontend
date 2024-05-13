@@ -1,0 +1,27 @@
+<h2>Liste des Enseignants</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Numéro de Téléphone</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let enseignant of enseignants">
+      <td>{{ enseignant.nom_enseignant }}</td>
+      <td>{{ enseignant.prenom_enseignant }}</td>
+      <td>{{ enseignant.num_tel }}</td>
+      <td>{{ enseignant.email }}</td>
+      <td>
+        <button *ngIf="enseignant.id !== undefined" (click)="deleteEnseignant(enseignant.id)">Supprimer</button>
+        <a [routerLink]="['/edit-enseignant', enseignant.id]">Editer</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button routerLink="/create-enseignant">Ajouter un Nouvel Enseignant</button>

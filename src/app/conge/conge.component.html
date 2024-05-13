@@ -1,0 +1,27 @@
+<h2>Liste des congés</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type de congé</th>
+      <th>Date de début</th>
+      <th>Date de fin</th>
+      <th>Enseignant</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let conge of conges">
+      <td>{{ conge.type_conge }}</td>
+      <td>{{ conge.date_debut }}</td>
+      <td>{{ conge.date_fin }}</td>
+      <td>{{ conge.id_enseignant }}</td>
+      <td>
+        <button *ngIf="conge.id !== undefined"(click)="editConge(conge.id)">Modifier</button>
+        <button *ngIf="conge.id !== undefined"(click)="deleteConge(conge.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button routerLink="/create-conge">Ajouter un congé</button>

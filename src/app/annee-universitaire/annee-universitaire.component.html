@@ -1,0 +1,25 @@
+<h2>Liste des années universitaires</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom de l'année</th>
+      <th>ID de la charge horaire</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let annee of anneeUniversitaires">
+      <td>{{ annee.id }}</td>
+      <td>{{ annee.nom_annee }}</td>
+      <td>{{ annee.id_charge_horaire }}</td>
+      <td>
+        <button *ngIf="annee.id !== undefined" (click)="editAnneeUniversitaire(annee.id)">Modifier</button>
+        <button *ngIf="annee.id !== undefined" (click)="deleteAnneeUniversitaire(annee.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a routerLink="/create-annee-universitaire">Ajouter une année universitaire</a>
