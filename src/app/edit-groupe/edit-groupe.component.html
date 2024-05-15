@@ -1,19 +1,19 @@
-<div *ngIf="groupeToEdit">
-    <h2>Editer le Groupe</h2>
-    <form (submit)="updateGroupe()">
-      <label>
-        Nom du Groupe:
-        <input type="text" [(ngModel)]="groupeToEdit.nom_groupe" name="nom_groupe" required>
-      </label>
-      <label>
-        Niveau:
-        <select [(ngModel)]="groupeToEdit.id_niveau" name="id_niveau" required>
-          <option *ngFor="let niveau of niveaux" [value]="niveau.id">{{ niveau.nom_niveau }}</option>
-        </select>
-      </label>
-      <button type="submit">Mettre à jour</button>
-    </form>
-  </div>
-  
-  <button routerLink="/groupes">Retour à la Liste</button>
-  
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Modifier un groupe</h2>
+
+  <form [formGroup]="form" (ngSubmit)="updateGroupe()" style="width: 100%;">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Nom du Groupe:</mat-label>
+      <input matInput placeholder="Nom du Groupe" formControlName="nom_groupe">
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Niveau:</mat-label>
+      <mat-select formControlName="id_niveau">
+        <mat-option *ngFor="let niveau of niveaux" [value]="niveau.id">{{ niveau.nom_niveau }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+  </form>
+</div>

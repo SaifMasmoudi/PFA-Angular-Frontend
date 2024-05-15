@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Niveau } from 'src/Modeles/Niveau';
 import { NiveauService } from 'src/Services/niveau.service';
@@ -8,8 +8,9 @@ import { NiveauService } from 'src/Services/niveau.service';
   templateUrl: './niveau.component.html',
   styleUrls: ['./niveau.component.css']
 })
-export class NiveauComponent {
+export class NiveauComponent implements OnInit {
   niveaux: Niveau[] = [];
+  displayedColumns: string[] = ['1', '2', '3'];
 
   constructor(private niveauService: NiveauService, private router: Router) { }
 
@@ -29,5 +30,10 @@ export class NiveauComponent {
 
   editNiveau(niveau: Niveau): void {
     this.router.navigate(['/edit-niveau', niveau.id]);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // Apply your filtering logic here if needed
   }
 }

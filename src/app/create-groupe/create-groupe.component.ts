@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Groupe } from 'src/Modeles/Groupe';
 import { Niveau } from 'src/Modeles/Niveau';
@@ -11,21 +12,39 @@ import { NiveauService } from 'src/Services/niveau.service';
 })
 export class CreateGroupeComponent {
   niveaux: Niveau[] = [];
+  form!: FormGroup;
 
   constructor(
+    private formBuilder: FormBuilder,
     private groupeService: GroupeService,
     private niveauService: NiveauService,
     private router: Router
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.getAllNiveaux();
+    this.initForm();
   }
 
   getAllNiveaux(): void {
     this.niveauService.getAllNiveau().subscribe(niveaux => this.niveaux = niveaux);
   }
 
-  createGroupe(nom_groupe: string, id_niveau: string): void {
-    const nouveauGroupe: Groupe = { nom_groupe, id_niveau: +id_niveau } as Groupe;
+  initForm(): void {
+    this.form = this.formBuilder.group({
+      nom_groupe: ['', Validators.required],
+      id_niveau: ['', Validators.required]
+    });
+  }
+
+  createGroupe(): void {
+    if (this.form.invalid) {
+      return;
+    }
+
+    const { nom_groupe, id_niveau } = this.form.value;
+    const nouveauGroupe: Groupe = { nom_groupe, id_niveau } as Groupe;
+    
     this.groupeService.createGroupe(nouveauGroupe).subscribe(() => {
       this.router.navigate(['/groupes']);
     });

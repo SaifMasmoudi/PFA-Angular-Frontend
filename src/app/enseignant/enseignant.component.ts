@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Enseignant } from 'src/Modeles/Enseignant';
 import { EnseignantService } from 'src/Services/enseignant.service';
 
@@ -7,10 +8,14 @@ import { EnseignantService } from 'src/Services/enseignant.service';
   templateUrl: './enseignant.component.html',
   styleUrls: ['./enseignant.component.css']
 })
-export class EnseignantComponent {
+export class EnseignantComponent implements OnInit {
   enseignants: Enseignant[] = [];
+  displayedColumns: string[] = ['1', '2', '3', '4', '5','6'];
 
-  constructor(private enseignantService: EnseignantService) {}
+  constructor(
+    private enseignantService: EnseignantService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getAllEnseignants();
@@ -39,5 +44,13 @@ export class EnseignantComponent {
       );
     }
   }
-  
+
+  editEnseignant(id :number): void {
+    this.router.navigate(['/edit-enseignant', id]);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // Apply your filtering logic here if needed
+  }
 }

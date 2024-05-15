@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Examen } from 'src/Modeles/Examen';
 import { NiveauMatiere } from 'src/Modeles/NiveauMatiere';
@@ -10,9 +10,10 @@ import { NiveauMatiereService } from 'src/Services/niveau-matiere.service';
   templateUrl: './examen.component.html',
   styleUrls: ['./examen.component.css']
 })
-export class ExamenComponent {
+export class ExamenComponent implements OnInit {
   examens: Examen[] = [];
   niveauMatieres: NiveauMatiere[] = [];
+  displayedColumns: string[] = ['1', '2', '3', '4', '5', '6'];
 
   constructor(
     private examenService: ExamenService,
@@ -47,7 +48,6 @@ export class ExamenComponent {
     );
   }
 
-
   editExamen(id: number) {
     this.router.navigate(['/edit-examen', id]);
   }
@@ -61,5 +61,10 @@ export class ExamenComponent {
         console.error('Erreur lors de la suppression de l\'examen :', error);
       }
     );
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // Apply your filtering logic here if needed
   }
 }

@@ -1,16 +1,15 @@
-<div *ngIf="salleToEdit">
-  <h2>Editer la Salle</h2>
-  <form (submit)="updateSalle()">
-    <label>
-      Numéro de Salle:
-      <input type="text" [(ngModel)]="salleToEdit.num_salle" name="num_salle" required>
-    </label>
-    <label>
-      Capacité:
-      <input type="text" [(ngModel)]="salleToEdit.capacite" name="capacite" required>
-    </label>
-    <button type="submit">Mettre à jour</button>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Modifier une Salle</h2>
+
+  <form [formGroup]="form" (ngSubmit)="updateSalle()" style="width: 100%;">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Numéro de Salle</mat-label>
+      <input matInput placeholder="Numéro de Salle" formControlName="num_salle">
+    </mat-form-field>
+    <mat-form-field style="width: 100%;">
+      <mat-label>Capacité</mat-label>
+      <input matInput placeholder="Capacité" formControlName="capacite">
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
   </form>
 </div>
-
-<button routerLink="/salle">Retour à la Liste</button>

@@ -1,15 +1,15 @@
-<h2>Ajouter une Nouvelle Salle</h2>
+<div fxLayout="column">
+  <h2>Créer une Salle</h2>
 
-<form (submit)="createSalle(num_salle.value, capacite.value)">
-  <label>
-    Numéro de Salle:
-    <input type="text" #num_salle required>
-  </label>
-  <label>
-    Capacité:
-    <input type="text" #capacite required>
-  </label>
-  <button type="submit">Ajouter Salle</button>
-</form>
-
-<button routerLink="/salle">Retour à la Liste</button>
+  <form [formGroup]="form" (ngSubmit)="createSalle()" style="width: 100%;">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Numéro de Salle</mat-label>
+      <input matInput placeholder="Numéro de Salle" formControlName="num_salle">
+    </mat-form-field>
+    <mat-form-field style="width: 100%;">
+      <mat-label>Capacité</mat-label>
+      <input matInput placeholder="Capacité" formControlName="capacite">
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+  </form>
+</div>

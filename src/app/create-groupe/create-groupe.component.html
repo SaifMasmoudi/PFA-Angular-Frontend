@@ -1,17 +1,21 @@
-<h2>Ajouter un Nouveau Groupe</h2>
+<div fxLayout="column">
+  <h2>Créer un groupe</h2>
 
-<form (submit)="createGroupe(nom_groupe.value, id_niveau.value)">
-  <label>
-    Nom du Groupe:
-    <input type="text" #nom_groupe required>
-  </label>
-  <label>
-    Niveau:
-    <select #id_niveau required>
-      <option *ngFor="let niveau of niveaux" [value]="niveau.id">{{ niveau.nom_niveau }}</option>
-    </select>
-  </label>
-  <button type="submit">Ajouter Groupe</button>
-</form>
+  <form [formGroup]="form" (ngSubmit)="createGroupe()" style="width: 100%;">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Nom du Groupe:</mat-label>
+      <input matInput placeholder="Nom du Groupe" formControlName="nom_groupe">
+    </mat-form-field>
 
-<button routerLink="/groupes">Retour à la Liste</button>
+    <mat-form-field style="width: 100%;">
+      <mat-label>Niveau:</mat-label>
+      <mat-select formControlName="id_niveau">
+        <mat-option *ngFor="let niveau of niveaux" [value]="niveau.id">
+          {{ niveau.nom_niveau }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+  </form>
+</div>

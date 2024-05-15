@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MemberComponent } from './member/member.component';
-import { MemberFormComponent } from './member-form/member-form.component';
 import { LoginComponent } from './login/login.component';
 import { SalleComponent } from './salle/salle.component';
 import { CreateSalleComponent } from './create-salle/create-salle.component';
 import { EditSalleComponent } from './edit-salle/edit-salle.component';
 import { NiveauComponent } from './niveau/niveau.component';
 import { CreateNiveauComponent } from './create-niveau/create-niveau.component';
-import { EditNiveauComponent } from './edit-niveau/edit-niveau.component'; 
+import { EditNiveauComponent } from './edit-niveau/edit-niveau.component';
 import { EditGroupeComponent } from './edit-groupe/edit-groupe.component';
 import { CreateGroupeComponent } from './create-groupe/create-groupe.component';
 import { GroupeComponent } from './groupe/groupe.component';
@@ -36,12 +34,10 @@ import { EditChargeHoraireComponent } from './edit-charge-horaire/edit-charge-ho
 import { AnneeUniversitaireComponent } from './annee-universitaire/annee-universitaire.component';
 import { CreateAnneeUniversitaireComponent } from './create-annee-universitaire/create-annee-universitaire.component';
 import { EditAnneeUniversitaireComponent } from './edit-annee-universitaire/edit-annee-universitaire.component';
+
 const routes: Routes = [
-  {
-    path:'login',
-    pathMatch:'full',
-    component:LoginComponent
-  },
+  { path: 'login', pathMatch: 'full', component: LoginComponent },
+
   { path: 'groupes', component: GroupeComponent },
   { path: 'create-groupe', component: CreateGroupeComponent },
   { path: 'edit-groupe/:id', component: EditGroupeComponent },
@@ -69,57 +65,23 @@ const routes: Routes = [
   { path: 'conges', component: CongeComponent },
   { path: 'create-conge', component: CreateCongeComponent },
   { path: 'edit-conge/:id', component: EditCongeComponent },
-  
-  { path:'salle', pathMatch:'full', component:SalleComponent },
-  {
-    path: 'primes',
-    component: PrimeComponent
-  },
-  {
-    path: 'create-prime',
-    component: CreatePrimeComponent
-  },
-  {
-    path: 'edit-prime/:id',
-    component: EditPrimeComponent
-  },
-  {
-    path:'create-salle',
-    pathMatch:'full',
-    component:CreateSalleComponent
-  },
-  {
-    path:'edit-salle/:id',
-    pathMatch:'full',
-    component:EditSalleComponent
-  },
-  {
-    path:'members',
-    pathMatch:'full',
-    component:MemberComponent
-  },
-  {
-    path:'create',
-    pathMatch:'full',
-    component:MemberFormComponent
-  },
-  {
-    path:'',
-    pathMatch:'full',
-    redirectTo:'members'
 
-  },
+  { path: 'salle', pathMatch: 'full', component: SalleComponent },
+  { path: 'create-salle', pathMatch: 'full', component: CreateSalleComponent },
+  { path: 'edit-salle/:id', pathMatch: 'full', component: EditSalleComponent },
+
+  { path: 'primes', component: PrimeComponent },
+  { path: 'create-prime', component: CreatePrimeComponent },
+  { path: 'edit-prime/:id', component: EditPrimeComponent },
+
+  
   { path: 'charge-horaires', component: ChargeHoraireComponent },
   { path: 'create-charge-horaire', component: CreateChargeHoraireComponent },
   { path: 'edit-charge-horaire/:id', component: EditChargeHoraireComponent },
-  {
-   path:':id/edit',
-   pathMatch:"full",
-   component: MemberFormComponent
-  },
+
   { path: 'annee-universitaires', component: AnneeUniversitaireComponent },
   { path: 'create-annee-universitaire', component: CreateAnneeUniversitaireComponent },
-  { path: 'edit-annee-universitaire/:id', component: EditAnneeUniversitaireComponent },
+  { path: 'edit-annee-universitaire/:id', component: EditAnneeUniversitaireComponent }
 ];
 
 @NgModule({

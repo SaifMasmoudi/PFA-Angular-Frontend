@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnneeUniversitaire } from 'src/Modeles/AnneeUniversitaire';
 import { AnneeUniversitaireService } from 'src/Services/annee-universitaire.service';
@@ -8,8 +8,9 @@ import { AnneeUniversitaireService } from 'src/Services/annee-universitaire.serv
   templateUrl: './annee-universitaire.component.html',
   styleUrls: ['./annee-universitaire.component.css']
 })
-export class AnneeUniversitaireComponent {
+export class AnneeUniversitaireComponent implements OnInit {
   anneeUniversitaires: AnneeUniversitaire[] = [];
+  displayedColumns: string[] = ['1', '2', '3', '4'];
 
   constructor(
     private anneeUniversitaireService: AnneeUniversitaireService,
@@ -44,5 +45,10 @@ export class AnneeUniversitaireComponent {
         console.error('Erreur lors de la suppression de l\'année universitaire :', error);
       }
     );
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // Apply your filtering logic here if needed
   }
 }

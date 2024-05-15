@@ -1,29 +1,56 @@
-<h2>Liste des examens</h2>
+<div fxLayout="row" fxLayoutAlign="end center">
+  <button routerLink="/create-examen" mat-raised-button color="primary">Ajouter un examen</button>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nom de l'examen</th>
-      <th>Date de l'examen</th>
-      <th>Heure de début</th>
-      <th>Heure de fin</th>
-      <th>Niveau / Matière</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let examen of examens">
-      <td>{{ examen.nom_examen }}</td>
-      <td>{{ examen.date_examen }}</td>
-      <td>{{ examen.heure_debut }}</td>
-      <td>{{ examen.heure_fin }}</td>
-      <td>{{ examen.id_niveau_matiere }}</td>
-      <td>
-        <button *ngIf="examen.id !== undefined" (click)="editExamen(examen.id)">Modifier</button>
-        <button *ngIf="examen.id !== undefined" (click)="deleteExamen(examen.id)">Supprimer</button>
-      </td>
-    </tr>
-  </tbody>
+<mat-form-field>
+  <mat-label>Filtrer</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Examen de Mathématiques" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="examens" class="mat-elevation-z8">
+  <!-- Nom de l'examen Column -->
+  <ng-container matColumnDef="1">
+    <th mat-header-cell *matHeaderCellDef> Nom de l'examen </th>
+    <td mat-cell *matCellDef="let element"> {{element.nom_examen}} </td>
+  </ng-container>
+
+  <!-- Date de l'examen Column -->
+  <ng-container matColumnDef="2">
+    <th mat-header-cell *matHeaderCellDef> Date de l'examen </th>
+    <td mat-cell *matCellDef="let element"> {{element.date_examen}} </td>
+  </ng-container>
+
+  <!-- Heure de début Column -->
+  <ng-container matColumnDef="3">
+    <th mat-header-cell *matHeaderCellDef> Heure de début </th>
+    <td mat-cell *matCellDef="let element"> {{element.heure_debut}} </td>
+  </ng-container>
+
+  <!-- Heure de fin Column -->
+  <ng-container matColumnDef="4">
+    <th mat-header-cell *matHeaderCellDef> Heure de fin </th>
+    <td mat-cell *matCellDef="let element"> {{element.heure_fin}} </td>
+  </ng-container>
+
+  <!-- Niveau / Matière Column -->
+  <ng-container matColumnDef="5">
+    <th mat-header-cell *matHeaderCellDef> Niveau / Matière </th>
+    <td mat-cell *matCellDef="let element"> {{element.id_niveau_matiere}} </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="6">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="editExamen(element.id)">
+        <mat-icon aria-hidden="false" aria-label="Modifier" fontIcon="edit"></mat-icon>
+      </button>
+      <button (click)="deleteExamen(element.id)">
+        <mat-icon aria-hidden="false" aria-label="Supprimer" fontIcon="delete"></mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
-<button routerLink="/create-examen">Ajouter un examen</button>

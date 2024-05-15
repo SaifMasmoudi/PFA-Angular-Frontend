@@ -1,27 +1,56 @@
-<h2>Liste des Enseignants</h2>
+<div fxLayout="row" fxLayoutAlign="end center">
+  <button routerLink="/create-enseignant" mat-raised-button color="primary">Ajouter un Nouvel Enseignant</button>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Prénom</th>
-      <th>Numéro de Téléphone</th>
-      <th>Email</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let enseignant of enseignants">
-      <td>{{ enseignant.nom_enseignant }}</td>
-      <td>{{ enseignant.prenom_enseignant }}</td>
-      <td>{{ enseignant.num_tel }}</td>
-      <td>{{ enseignant.email }}</td>
-      <td>
-        <button *ngIf="enseignant.id !== undefined" (click)="deleteEnseignant(enseignant.id)">Supprimer</button>
-        <a [routerLink]="['/edit-enseignant', enseignant.id]">Editer</a>
-      </td>
-    </tr>
-  </tbody>
+<mat-form-field>
+  <mat-label>Filtrer</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Jean Dupont" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="enseignants" class="mat-elevation-z8">
+   <!-- ID Column -->
+   <ng-container matColumnDef="1">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+  <!-- Nom Column -->
+  <ng-container matColumnDef="2">
+    <th mat-header-cell *matHeaderCellDef> Nom </th>
+    <td mat-cell *matCellDef="let element"> {{element.nom_enseignant}} </td>
+  </ng-container>
+
+  <!-- Prénom Column -->
+  <ng-container matColumnDef="3">
+    <th mat-header-cell *matHeaderCellDef> Prénom </th>
+    <td mat-cell *matCellDef="let element"> {{element.prenom_enseignant}} </td>
+  </ng-container>
+
+  <!-- Numéro de Téléphone Column -->
+  <ng-container matColumnDef="4">
+    <th mat-header-cell *matHeaderCellDef> Numéro de Téléphone </th>
+    <td mat-cell *matCellDef="let element"> {{element.num_tel}} </td>
+  </ng-container>
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="5">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="6">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="deleteEnseignant(element.id)">
+        <mat-icon aria-hidden="false" aria-label="Supprimer" fontIcon="delete"></mat-icon>
+      </button>
+      <button (click)="editEnseignant(element.id)">
+        <mat-icon aria-hidden="false" aria-label="edit" fontIcon="edit"></mat-icon>
+      </button>
+    
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
-<button routerLink="/create-enseignant">Ajouter un Nouvel Enseignant</button>

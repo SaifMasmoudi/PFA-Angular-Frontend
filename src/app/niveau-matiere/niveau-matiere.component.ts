@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Matiere } from 'src/Modeles/Matiere';
 import { Niveau } from 'src/Modeles/Niveau';
@@ -12,10 +12,11 @@ import { NiveauService } from 'src/Services/niveau.service';
   templateUrl: './niveau-matiere.component.html',
   styleUrls: ['./niveau-matiere.component.css']
 })
-export class NiveauMatiereComponent {
+export class NiveauMatiereComponent implements OnInit {
   niveauMatieres: NiveauMatiere[] = [];
   niveaux: Niveau[] = [];
   matieres: Matiere[] = [];
+  displayedColumns: string[] = ['1', '2', '3','4'];
 
   constructor(
     private niveauMatiereService: NiveauMatiereService,
@@ -50,5 +51,19 @@ export class NiveauMatiereComponent {
 
   editNiveauMatiere(niveauMatiere: NiveauMatiere): void {
     this.router.navigate(['/edit-niveau-matiere', niveauMatiere.id]);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // Apply your filtering logic here if needed
+  }
+  getNiveauLabel(idNiveau: number): string {
+    const niveau = this.niveaux.find(n => n.id === idNiveau);
+    return niveau ? niveau.nom_niveau : '';
+  }
+
+  getMatiereLabel(idMatiere: number): string {
+    const matiere = this.matieres.find(m => m.id === idMatiere);
+    return matiere ? matiere.nom_matiere : '';
   }
 }

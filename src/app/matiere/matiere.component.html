@@ -1,11 +1,44 @@
-<h2>Liste des Matières</h2>
+<div fxLayout="row" fxLayoutAlign="end center">
+  <button routerLink="/create-matiere" mat-raised-button color="primary">Ajouter une Nouvelle Matière</button>
+</div>
 
-<ul>
-  <li *ngFor="let matiere of matieres">
-    {{ matiere.nom_matiere }} - {{ matiere.description }}
-    <button *ngIf="matiere.id !== undefined" (click)="deleteMatiere(matiere.id)">Supprimer</button>
-    <button *ngIf="matiere.id !== undefined" (click)="editMatiere(matiere)">Editer</button>
-  </li>
-</ul>
+<mat-form-field>
+  <mat-label>Filtrer</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mathématiques" #input>
+</mat-form-field>
 
-<button routerLink="/create-matiere">Ajouter une Nouvelle Matière</button>
+<table mat-table [dataSource]="matieres" class="mat-elevation-z8">
+  <!-- ID Column -->
+  <ng-container matColumnDef="1">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Nom de Matière Column -->
+  <ng-container matColumnDef="2">
+    <th mat-header-cell *matHeaderCellDef> Nom de Matière </th>
+    <td mat-cell *matCellDef="let element"> {{element.nom_matiere}} </td>
+  </ng-container>
+
+  <!-- Description Column -->
+  <ng-container matColumnDef="3">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="4">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="editMatiere(element)">
+        <mat-icon aria-hidden="false" aria-label="Modifier" fontIcon="edit"></mat-icon>
+      </button>
+      <button (click)="deleteMatiere(element.id)">
+        <mat-icon aria-hidden="false" aria-label="Supprimer" fontIcon="delete"></mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

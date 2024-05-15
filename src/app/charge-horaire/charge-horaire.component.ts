@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChargeHoraire } from 'src/Modeles/ChargeHoraire';
 import { Enseignant } from 'src/Modeles/Enseignant';
@@ -12,10 +12,11 @@ import { NiveauMatiereService } from 'src/Services/niveau-matiere.service';
   templateUrl: './charge-horaire.component.html',
   styleUrls: ['./charge-horaire.component.css']
 })
-export class ChargeHoraireComponent {
+export class ChargeHoraireComponent implements OnInit {
   chargeHoraires: ChargeHoraire[] = [];
   niveauMatieres: NiveauMatiere[] = [];
   enseignants: Enseignant[] = [];
+  displayedColumns: string[] = ['5','1', '2', '3', '4'];
 
   constructor(
     private chargeHoraireService: ChargeHoraireService,
@@ -26,7 +27,8 @@ export class ChargeHoraireComponent {
 
   ngOnInit() {
     this.getChargeHoraires();
-    
+    this.getNiveauMatieres();
+    this.getEnseignants();
   }
 
   getChargeHoraires() {
@@ -36,6 +38,28 @@ export class ChargeHoraireComponent {
       },
       (error) => {
         console.error('Erreur lors de la récupération des charges horaires :', error);
+      }
+    );
+  }
+
+  getNiveauMatieres() {
+    this.niveauMatiereService.getAllNiveauMatieres().subscribe(
+      (data) => {
+        this.niveauMatieres = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des niveaux et matières :', error);
+      }
+    );
+  }
+
+  getEnseignants() {
+    this.enseignantService.getAllEnseignants().subscribe(
+      (data) => {
+        this.enseignants = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des enseignants :', error);
       }
     );
   }
@@ -53,5 +77,16 @@ export class ChargeHoraireComponent {
         console.error('Erreur lors de la suppression de la charge horaire :', error);
       }
     );
+  }
+
+
+  getEnseignantName(idEnseignant: number): string {
+    const enseignant = this.enseignants.find(e => e.id === idEnseignant);
+    return enseignant ? `${enseignant.nom_enseignant} ${enseignant.prenom_enseignant}` : '';
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // Apply your filtering logic here if needed
   }
 }

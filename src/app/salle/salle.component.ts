@@ -10,6 +10,7 @@ import { SalleService } from 'src/Services/salle.service';
 })
 export class SalleComponent  implements OnInit{
   salles: Salle[] = [];
+  displayedColumns: string[] = ['1', '2', '3', '4'];
 
   constructor(private salleService: SalleService, private router: Router) { }
 
@@ -27,7 +28,12 @@ export class SalleComponent  implements OnInit{
     });
   }
 
-  editSalle(salle: Salle): void {
-    this.router.navigate(['/edit-salle', salle.id]);
+  editSalle(id: number): void {
+    this.router.navigate(['/edit-salle', id]);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // Apply your filtering logic here if needed
   }
 }

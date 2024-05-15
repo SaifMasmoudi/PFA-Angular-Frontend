@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Enseignant } from 'src/Modeles/Enseignant';
 import { Prime } from 'src/Modeles/Prime';
@@ -10,9 +10,10 @@ import { PrimeService } from 'src/Services/prime.service';
   templateUrl: './prime.component.html',
   styleUrls: ['./prime.component.css']
 })
-export class PrimeComponent {
+export class PrimeComponent implements OnInit {
   primes: Prime[] = [];
   enseignants: Enseignant[] = [];
+  displayedColumns: string[] = ['1', '2', '3','4'];
 
   constructor(
     private primeService: PrimeService,
@@ -46,5 +47,10 @@ export class PrimeComponent {
   getEnseignantName(idEnseignant: number): string {
     const enseignant = this.enseignants.find(e => e.id === idEnseignant);
     return enseignant ? enseignant.nom_enseignant : '';
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // Apply your filtering logic here if needed
   }
 }

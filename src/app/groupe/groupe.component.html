@@ -1,11 +1,48 @@
-<h2>Liste des Groupes</h2>
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button routerLink="/create-groupe" mat-raised-button color="primary">Créer un Nouveau Groupe</button>
+  </div>
 
-<ul>
-  <li *ngFor="let groupe of groupes">
-    {{ groupe.nom_groupe }} - Niveau: {{ getNiveauName(groupe.id_niveau) }}
-    <button *ngIf="groupe.id !== undefined" (click)="deleteGroupe(groupe.id)">Supprimer</button>
-    <button *ngIf="groupe.id !== undefined" (click)="editGroupe(groupe)">Editer</button>
-  </li>
-</ul>
+  <div fxLayout="row"> <!-- Nouveau conteneur pour le filtre -->
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Salle 101" #input>
+    </mat-form-field>
+  </div>
 
-<button routerLink="/create-groupe">Ajouter un Nouveau Groupe</button>
+  <table mat-table [dataSource]="groupes" class="mat-elevation-z8">
+    <!--- Définition des colonnes -->
+    <ng-container matColumnDef="1">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="2">
+      <th mat-header-cell *matHeaderCellDef> Nom du Groupe </th>
+      <td mat-cell *matCellDef="let element"> {{element.nom_groupe}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="3">
+      <th mat-header-cell *matHeaderCellDef> Niveau </th>
+      <td mat-cell *matCellDef="let element"> {{getNiveauName(element.id_niveau)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="4">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button *ngIf="element.id !== undefined" (click)="editGroupe(element)">
+          <mat-icon aria-hidden="false" aria-label="Modifier" fontIcon="edit"></mat-icon>
+        </button>
+    
+        <button (click)="deleteGroupe(element.id)">
+          <mat-icon aria-hidden="false" aria-label="Supprimer" fontIcon="delete"></mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    
+
+    <!-- Définition des rangées -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
