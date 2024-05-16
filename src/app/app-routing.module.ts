@@ -34,7 +34,9 @@ import { EditChargeHoraireComponent } from './edit-charge-horaire/edit-charge-ho
 import { AnneeUniversitaireComponent } from './annee-universitaire/annee-universitaire.component';
 import { CreateAnneeUniversitaireComponent } from './create-annee-universitaire/create-annee-universitaire.component';
 import { EditAnneeUniversitaireComponent } from './edit-annee-universitaire/edit-annee-universitaire.component';
-
+import { EmploiComponent } from './emploi/emploi.component';
+import { CreateEmploiComponent } from './create-emploi/create-emploi.component';
+import { EditEmploiComponent } from './edit-emploi/edit-emploi.component';
 const routes: Routes = [
   { path: 'login', pathMatch: 'full', component: LoginComponent },
 
@@ -81,7 +83,12 @@ const routes: Routes = [
 
   { path: 'annee-universitaires', component: AnneeUniversitaireComponent },
   { path: 'create-annee-universitaire', component: CreateAnneeUniversitaireComponent },
-  { path: 'edit-annee-universitaire/:id', component: EditAnneeUniversitaireComponent }
+  { path: 'edit-annee-universitaire/:id', component: EditAnneeUniversitaireComponent },
+
+
+  { path: 'emplois', component: EmploiComponent },
+  { path: 'emplois-create', component: CreateEmploiComponent },
+  { path: 'edit-emplois/:id', component: EditEmploiComponent },
 ];
 
 @NgModule({

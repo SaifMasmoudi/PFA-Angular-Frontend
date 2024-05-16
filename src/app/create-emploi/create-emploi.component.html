@@ -1,0 +1,50 @@
+<div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <button routerLink="/emplois" mat-raised-button color="primary">Retour à la liste des emplois</button>
+    </div>
+  
+    <form [formGroup]="createEmploiForm" (ngSubmit)="onCreateEmployi()">
+      <div fxLayout="column" fxLayoutGap="16px">
+        <mat-form-field>
+            <mat-label>Jour</mat-label>
+            <mat-select formControlName="jour" required>
+              <mat-option *ngFor="let jour of jours" [value]="jour">
+                {{ jour }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Heure de début</mat-label>
+            <input matInput type="time" formControlName="heure_debut" required>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Heure de fin</mat-label>
+            <input matInput type="time" formControlName="heure_fin" required>
+          </mat-form-field>
+          
+  
+        <mat-form-field>
+          <mat-label>Salle</mat-label>
+          <mat-select formControlName="id_salle" required>
+            <mat-option *ngFor="let salle of salles" [value]="salle.id">
+              {{ salle.num_salle }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Année universitaire</mat-label>
+          <mat-select formControlName="id_annee" required>
+            <mat-option *ngFor="let annee of annees" [value]="annee.id">
+              {{ annee.nom_annee }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <button type="submit" mat-raised-button color="primary">Créer l'emploi</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
