@@ -1,21 +1,44 @@
-<h2>Modifier un congé</h2>
+<h2>Modifier un Congé</h2>
 
-<form (ngSubmit)="updateConge()">
-  <div>
-    <label for="type_conge">Type de congé :</label>
-    <input type="text" id="type_conge" [(ngModel)]="conge.type_conge" name="type_conge" required>
+<form [formGroup]="congeForm" (ngSubmit)="updateConge()" class="form-container">
+  <div class="form-row">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Type de congé :</mat-label>
+      <mat-select formControlName="type_conge" required [compareWith]="compareTypes">
+        <mat-option *ngFor="let type of typeConge" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <div>
-    <label for="date_debut">Date de début :</label>
-    <input type="date" id="date_debut" [(ngModel)]="conge.date_debut" name="date_debut" required>
+
+  <div class="form-row">
+    <mat-form-field style="width: 100%;"> 
+      <mat-label>Date de début :</mat-label>
+      <input matInput formControlName="date_debut" type="date" [value]="conge.date_debut" required>
+    </mat-form-field>
   </div>
-  <div>
-    <label for="date_fin">Date de fin :</label>
-    <input type="date" id="date_fin" [(ngModel)]="conge.date_fin" name="date_fin" required>
+
+  <div class="form-row">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Date de fin :</mat-label>
+      <input matInput formControlName="date_fin" type="date" [value]="conge.date_fin" required>
+    </mat-form-field>
   </div>
-  <div>
-    <label for="id_enseignant">Enseignant :</label>
-    <input type="number" id="id_enseignant" [(ngModel)]="conge.id_enseignant" name="id_enseignant" required>
+
+  <div class="form-row">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Enseignant :</mat-label>
+      <mat-select formControlName="id_enseignant" required>
+        <mat-option *ngFor="let enseignant of enseignants" [value]="enseignant.id">
+          {{ enseignant.nom_enseignant }} {{ enseignant.prenom_enseignant }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <button type="submit">Mettre à jour</button>
+
+  <div class="form-actions">
+    <button mat-raised-button type="submit" color="primary">Mettre à jour</button>
+    <button mat-button routerLink="/conges">Retour à la Liste</button>
+  </div>
 </form>

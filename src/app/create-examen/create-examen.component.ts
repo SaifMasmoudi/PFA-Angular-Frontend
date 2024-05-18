@@ -12,24 +12,32 @@ import { NiveauMatiereService } from 'src/Services/niveau-matiere.service';
   styleUrls: ['./create-examen.component.css']
 })
 export class CreateExamenComponent  {
-  newExamen: Examen = {
-    nom_examen: '',
-    date_examen: '',
-    heure_debut: '',
-    heure_fin: '',
-    id_niveau_matiere: 0
-  };
+  form!: FormGroup;
   niveauMatieres: NiveauMatiere[] = [];
 
   constructor(
+    private formBuilder: FormBuilder,
     private examenService: ExamenService,
     private niveauMatiereService: NiveauMatiereService,
     private router: Router
-  ) {
+  ) { }
+
+  ngOnInit(): void {
+    this.initForm();
     this.getNiveauMatieres();
   }
 
-  getNiveauMatieres() {
+  initForm(): void {
+    this.form = this.formBuilder.group({
+      nom_examen: ['', Validators.required],
+      date_examen: ['', Validators.required],
+      heure_debut: ['', Validators.required],
+      heure_fin: ['', Validators.required],
+      id_niveau_matiere: ['', Validators.required]
+    });
+  }
+
+  getNiveauMatieres(): void {
     this.niveauMatiereService.getAllNiveauMatieres().subscribe(
       (data) => {
         this.niveauMatieres = data;
@@ -40,15 +48,27 @@ export class CreateExamenComponent  {
     );
   }
 
-  createExamen():void {
-    this.examenService.createExamen(this.newExamen).subscribe(
-      (data) => {
-        this.router.navigate(['/examens']);
-      },
-      (error) => {
-        console.error('Erreur lors de la création de l\'examen :', error);
-      }
-    );
+  createExamen(): void {
+    if (this.form.valid) {
+      const newExamen: Examen = {
+        nom_examen: this.form.value.nom_examen,
+        date_examen: this.form.value.date_examen,
+        heure_debut: this.form.value.heure_debut,
+        heure_fin: this.form.value.heure_fin,
+        id_niveau_matiere: this.form.value.id_niveau_matiere
+      };
+
+      this.examenService.createExamen(newExamen).subscribe(
+        (data) => {
+          this.router.navigate(['/examens']);
+        },
+        (error) => {
+          console.error('Erreur lors de la création de l\'examen :', error);
+        }
+      );
+    } else {
+      console.log('Formulaire invalide');
+    }
   }
 
   

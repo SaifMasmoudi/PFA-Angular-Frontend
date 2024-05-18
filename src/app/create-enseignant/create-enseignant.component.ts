@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Enseignant } from 'src/Modeles/Enseignant';
 import { EnseignantService } from 'src/Services/enseignant.service';
@@ -9,26 +10,34 @@ import { EnseignantService } from 'src/Services/enseignant.service';
   styleUrls: ['./create-enseignant.component.css']
 })
 export class CreateEnseignantComponent {
-  enseignant: Enseignant = {
-    nom_enseignant: '',
-    prenom_enseignant: '',
-    num_tel: '',
-    email: ''
-  };
+  form: FormGroup;
 
   constructor(
+    private formBuilder: FormBuilder,
     private enseignantService: EnseignantService,
     private router: Router
-  ) {}
+  ) {
+    this.form = this.formBuilder.group({
+      nom_enseignant: ['', Validators.required],
+      prenom_enseignant: ['', Validators.required],
+      num_tel: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
 
   createEnseignant(): void {
-    this.enseignantService.createEnseignant(this.enseignant).subscribe(
-      (data) => {
-        this.router.navigate(['/enseignants']);
-      },
-      (error) => {
-        console.error('Erreur lors de la création de l\'enseignant', error);
-      }
-    );
+    if (this.form.valid) {
+      const enseignant: Enseignant = this.form.value;
+      this.enseignantService.createEnseignant(enseignant).subscribe(
+        () => {
+          this.router.navigate(['/enseignants']);
+        },
+        (error) => {
+          console.error('Erreur lors de la création de l enseignant', error);
+        }
+      );
+    } else {
+      console.log('Le formulaire est invalide.');
+    }
   }
 }

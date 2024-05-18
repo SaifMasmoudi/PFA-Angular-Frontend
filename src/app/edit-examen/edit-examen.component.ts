@@ -12,6 +12,7 @@ import { NiveauMatiereService } from 'src/Services/niveau-matiere.service';
   styleUrls: ['./edit-examen.component.css']
 })
 export class EditExamenComponent {
+  form: FormGroup;
   examen: Examen = {
     id: 0,
     nom_examen: '',
@@ -23,11 +24,20 @@ export class EditExamenComponent {
   niveauMatieres: NiveauMatiere[] = [];
 
   constructor(
+    private fb: FormBuilder,
     private examenService: ExamenService,
     private niveauMatiereService: NiveauMatiereService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    this.form = this.fb.group({
+      nom_examen: ['', Validators.required],
+      date_examen: ['', Validators.required],
+      heure_debut: ['', Validators.required],
+      heure_fin: ['', Validators.required],
+      id_niveau_matiere: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
@@ -39,6 +49,13 @@ export class EditExamenComponent {
     this.examenService.getExamenById(id).subscribe(
       (data) => {
         this.examen = data;
+        this.form.patchValue({
+          nom_examen: this.examen.nom_examen,
+          date_examen: this.examen.date_examen,
+          heure_debut: this.examen.heure_debut,
+          heure_fin: this.examen.heure_fin,
+          id_niveau_matiere: this.examen.id_niveau_matiere
+        });
       },
       (error) => {
         console.error('Erreur lors de la récupération de l\'examen :', error);
@@ -58,13 +75,15 @@ export class EditExamenComponent {
   }
 
   updateExamen() {
-    this.examenService.updateExamen(this.examen.id!, this.examen).subscribe(
-      () => {
-        this.router.navigate(['/examens']);
-      },
-      (error) => {
-        console.error('Erreur lors de la mise à jour de l\'examen :', error);
-      }
-    );
+    if (this.form.valid) {
+      this.examenService.updateExamen(this.examen.id!, this.form.value).subscribe(
+        () => {
+          this.router.navigate(['/examens']);
+        },
+        (error) => {
+          console.error('Erreur lors de la mise à jour de l\'examen :', error);
+        }
+      );
+    }
   }
 }

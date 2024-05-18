@@ -1,19 +1,25 @@
-<h2>Ajouter une Nouvelle Association Niveau-Matière</h2>
+<h2>Ajouter un Niveau-Matière</h2>
 
-<form (submit)="createNiveauMatiere(+id_niveau.value, +id_matiere.value)">
-  <label>
-    Niveau:
-    <select #id_niveau required>
-      <option *ngFor="let niveau of niveaux" [value]="niveau.id">{{ niveau.nom_niveau }}</option>
-    </select>
-  </label>
-  <label>
-    Matière:
-    <select #id_matiere required>
-      <option *ngFor="let matiere of matieres" [value]="matiere.id">{{ matiere.nom_matiere }}</option>
-    </select>
-  </label>
-  <button type="submit">Ajouter Association</button>
+<form [formGroup]="form" (ngSubmit)="createNiveauMatiere()">
+  <div class="form-field">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Niveau:</mat-label>
+      <mat-select formControlName="id_niveau" required>
+        <mat-option *ngFor="let niveau of niveaux" [value]="niveau.id">{{ niveau.nom_niveau }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Matière:</mat-label>
+      <mat-select formControlName="id_matiere" required>
+        <mat-option *ngFor="let matiere of matieres" [value]="matiere.id">{{ matiere.nom_matiere }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button type="submit" color="primary">Ajouter Niveau-Matière</button>
 </form>
 
-<button routerLink="/niveau-matieres">Retour à la Liste</button>
+<button mat-button routerLink="/niveau-matieres">Retour à la Liste</button>

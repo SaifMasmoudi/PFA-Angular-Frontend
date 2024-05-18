@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Matiere } from 'src/Modeles/Matiere';
 import { Niveau } from 'src/Modeles/Niveau';
@@ -12,10 +13,12 @@ import { NiveauService } from 'src/Services/niveau.service';
   styleUrls: ['./create-niveau-matiere.component.css']
 })
 export class CreateNiveauMatiereComponent {
+  form!: FormGroup;
   niveaux: Niveau[] = [];
   matieres: Matiere[] = [];
 
   constructor(
+    private formBuilder: FormBuilder,
     private niveauMatiereService: NiveauMatiereService,
     private niveauService: NiveauService,
     private matiereService: MatiereService,
@@ -23,26 +26,41 @@ export class CreateNiveauMatiereComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getAllNiveaux();
-    this.getAllMatieres();
+    this.initForm();
+    this.getNiveaux();
+    this.getMatieres();
   }
 
-  getAllNiveaux(): void {
+  initForm(): void {
+    this.form = this.formBuilder.group({
+      id_niveau: ['', Validators.required],
+      id_matiere: ['', Validators.required]
+    });
+  }
+
+  getNiveaux(): void {
     this.niveauService.getAllNiveau().subscribe(niveaux => this.niveaux = niveaux);
   }
 
-  getAllMatieres(): void {
+  getMatieres(): void {
     this.matiereService.getAllMatieres().subscribe(matieres => this.matieres = matieres);
   }
 
-  createNiveauMatiere(idNiveau: number, idMatiere: number): void {
-    const niveauMatiere: NiveauMatiere = {
-      id_niveau: idNiveau,
-      id_matiere: idMatiere
-    };
+  createNiveauMatiere(): void {
+    if (this.form.valid) {
+      const idNiveau: number = this.form.value.id_niveau;
+      const idMatiere: number = this.form.value.id_matiere;
 
-    this.niveauMatiereService.createNiveauMatiere(niveauMatiere).subscribe(() => {
-      this.router.navigate(['/niveau-matieres']);
-    });
+      const niveauMatiere: NiveauMatiere = {
+        id_niveau: idNiveau,
+        id_matiere: idMatiere
+      };
+
+      this.niveauMatiereService.createNiveauMatiere(niveauMatiere).subscribe(() => {
+        this.router.navigate(['/niveau-matieres']);
+      });
+    } else {
+      console.log('Form is invalid');
+    }
   }
 }

@@ -35,7 +35,6 @@ export class EditEmploiComponent {
     if (id) {
       this.getEmployi(+id);
       this.getAllSalles();
-      this.getAllAnnees();
     }
   }
 
@@ -68,11 +67,6 @@ export class EditEmploiComponent {
     });
   }
 
-  getAllAnnees(): void {
-    this.anneeService.getAllAnneeUniversitaires().subscribe(annees => {
-      this.annees = annees;
-    });
-  }
 
   updateEmployi(): void {
     if (this.emploiToEdit && this.emploiToEdit.id) {

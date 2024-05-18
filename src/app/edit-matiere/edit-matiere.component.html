@@ -1,17 +1,18 @@
-<div *ngIf="matiereToEdit">
-    <h2>Editer la Matière</h2>
-    <form (submit)="updateMatiere()">
-      <label>
-        Nom de la Matière:
-        <input type="text" [(ngModel)]="matiereToEdit.nom_matiere" name="nom_matiere" required>
-      </label>
-      <label>
-        Description:
-        <textarea [(ngModel)]="matiereToEdit.description" name="description" required></textarea>
-      </label>
-      <button type="submit">Mettre à jour</button>
-    </form>
-  </div>
-  
-  <button routerLink="/matieres">Retour à la Liste</button>
-  
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Modifier une matiére</h2>
+
+  <form [formGroup]="form" (ngSubmit)="updateMatiere()" style="width: 100%;">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Nom de matiére</mat-label>
+      <input matInput placeholder="Nom de matiére" formControlName="nom_matiere">
+    </mat-form-field>
+    <mat-form-field style="width: 100%;">
+      <mat-label>description</mat-label>
+      <input matInput placeholder="Nom de matiére" formControlName="description">
+    </mat-form-field>
+
+      <button mat-raised-button type="submit" color="primary">Mettre à jour</button>
+      <button mat-button routerLink="/niveaux">Retour à la Liste</button>
+
+  </form>
+</div>

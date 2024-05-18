@@ -12,27 +12,25 @@ export class AnneeUniversitaireService {
 
   constructor(private http: HttpClient) { }
 
-  getAllAnneeUniversitaires(): Observable<AnneeUniversitaire[]> {
+  getAnnees(): Observable<AnneeUniversitaire[]> {
     return this.http.get<AnneeUniversitaire[]>(this.apiUrl);
   }
 
-  getAnneeUniversitaireById(id: number): Observable<AnneeUniversitaire> {
+  getAnnee(id: number): Observable<AnneeUniversitaire> {
     return this.http.get<AnneeUniversitaire>(`${this.apiUrl}/${id}`);
   }
 
-  createAnneeUniversitaire(anneeUniversitaire: AnneeUniversitaire): Observable<AnneeUniversitaire> {
-    return this.http.post<AnneeUniversitaire>(this.apiUrl, anneeUniversitaire);
+  createAnnee(annee: AnneeUniversitaire): Observable<AnneeUniversitaire> {
+    return this.http.post<AnneeUniversitaire>(this.apiUrl, annee);
   }
 
-  updateAnneeUniversitaire(id: number, anneeUniversitaire: AnneeUniversitaire): Observable<AnneeUniversitaire> {
-    return this.http.put<AnneeUniversitaire>(`${this.apiUrl}/${id}`, anneeUniversitaire);
+  updateAnnee(id: number, annee: AnneeUniversitaire): Observable<AnneeUniversitaire> {
+    return this.http.put<AnneeUniversitaire>(`${this.apiUrl}/${id}`, annee);
   }
 
-  deleteAnneeUniversitaire(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  deleteAnnee(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  getAnneeUniversitaireByChargeHoraireId(idChargeHoraire: number): Observable<AnneeUniversitaire[]> {
-    return this.http.get<AnneeUniversitaire[]>(`${this.apiUrl}/annee/${idChargeHoraire}`);
-  }
+
 }

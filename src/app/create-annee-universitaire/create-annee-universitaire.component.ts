@@ -10,38 +10,19 @@ import { ChargeHoraireService } from 'src/Services/charge-horaire.service';
   styleUrls: ['./create-annee-universitaire.component.css']
 })
 export class CreateAnneeUniversitaireComponent {
-  newAnneeUniversitaire: AnneeUniversitaire = {
-    nom_annee: '',
-    id_charge_horaire: 0
+  annee: AnneeUniversitaire = {
+    nom_annee: 0,
+    semestre: ''
   };
-  chargeHoraires: ChargeHoraire[] = [];
+
   constructor(
-    private anneeUniversitaireService: AnneeUniversitaireService,
-    private chargeHoraireService: ChargeHoraireService,
+    private anneeService: AnneeUniversitaireService,
     private router: Router
-  ) { this.getAllChargeHoraires();}
-  getAllChargeHoraires() {
-    this.chargeHoraireService.getAllChargeHoraires().subscribe(
-      (data) => {
-        this.chargeHoraires = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des charges horaires :', error);
-      }
-    );
-  }
-  createAnneeUniversitaire() {
-    this.anneeUniversitaireService.createAnneeUniversitaire(this.newAnneeUniversitaire).subscribe(
-      (data) => {
-        this.newAnneeUniversitaire = {
-          nom_annee: '',
-          id_charge_horaire: 0
-        };
-        this.router.navigate(['/annee-universitaires']);
-      },
-      (error) => {
-        console.error('Erreur lors de la création de l\'année universitaire :', error);
-      }
+  ) { }
+
+  createAnnee(): void {
+    this.anneeService.createAnnee(this.annee).subscribe(
+      () => this.router.navigate(['/annee-universitaires'])
     );
   }
 }

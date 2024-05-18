@@ -9,46 +9,19 @@ import { AnneeUniversitaireService } from 'src/Services/annee-universitaire.serv
   styleUrls: ['./annee-universitaire.component.css']
 })
 export class AnneeUniversitaireComponent implements OnInit {
-  anneeUniversitaires: AnneeUniversitaire[] = [];
-  displayedColumns: string[] = ['1', '2', '3', '4'];
+  annees: AnneeUniversitaire[] = [];
 
-  constructor(
-    private anneeUniversitaireService: AnneeUniversitaireService,
-    private router: Router
-  ) { }
+  constructor(private anneeService: AnneeUniversitaireService) { }
 
-  ngOnInit() {
-    this.getAllAnneeUniversitaires();
+  ngOnInit(): void {
+    this.getAnnees();
   }
 
-  getAllAnneeUniversitaires() {
-    this.anneeUniversitaireService.getAllAnneeUniversitaires().subscribe(
-      (data) => {
-        this.anneeUniversitaires = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des années universitaires :', error);
-      }
-    );
+  getAnnees(): void {
+    this.anneeService.getAnnees().subscribe(annees => this.annees = annees);
   }
 
-  editAnneeUniversitaire(id: number) {
-    this.router.navigate(['/edit-annee-universitaire', id]);
-  }
-
-  deleteAnneeUniversitaire(id: number) {
-    this.anneeUniversitaireService.deleteAnneeUniversitaire(id).subscribe(
-      () => {
-        this.getAllAnneeUniversitaires();
-      },
-      (error) => {
-        console.error('Erreur lors de la suppression de l\'année universitaire :', error);
-      }
-    );
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    // Apply your filtering logic here if needed
+  deleteAnnee(id: number): void {
+    this.anneeService.deleteAnnee(id).subscribe(() => this.getAnnees());
   }
 }

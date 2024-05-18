@@ -31,7 +31,6 @@ export class EmploiComponent {
   ngOnInit(): void {
     this.getAllEmployis();
     this.getAllSalles();
-    this.getAllAnnees();
   }
 
   getAllEmployis(): void {
@@ -42,10 +41,7 @@ export class EmploiComponent {
     this.salleService.getAllSalles().subscribe(salles => this.salles = salles);
   }
 
-  getAllAnnees(): void {
-    this.anneeService.getAllAnneeUniversitaires().subscribe(annees => this.annees = annees);
-  }
-
+  
   deleteEmployi(id: number): void {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       height: '200px',
@@ -73,10 +69,7 @@ export class EmploiComponent {
     return salle ? salle.num_salle : '';
   }
 
-  getAnneeName(idAnnee: number): string {
-    const annee = this.annees.find(a => a.id === idAnnee);
-    return annee ? annee.nom_annee : '';
-  }
+ 
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

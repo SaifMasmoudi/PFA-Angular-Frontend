@@ -1,17 +1,26 @@
-<h2>Modifier une Prime</h2>
+<h2>Modifier Prime</h2>
 
-<form (ngSubmit)="updatePrime()">
-  <div>
-    <label for="montant_prime">Montant de la Prime :</label>
-    <input type="text" id="montant_prime" [(ngModel)]="prime.montant_prime" name="montant_prime" required>
+<form [formGroup]="form" (ngSubmit)="updatePrime()">
+  <div class="form-row">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Montant de la prime</mat-label>
+      <input matInput formControlName="montant_prime" type="number" required>
+    </mat-form-field>
   </div>
-  <div>
-    <label for="id_enseignant">Enseignant :</label>
-    <select id="id_enseignant" [(ngModel)]="prime.id_enseignant" name="id_enseignant" required>
-      <option *ngFor="let enseignant of enseignants" [value]="enseignant.id">
-        {{ enseignant.nom_enseignant }} {{ enseignant.prenom_enseignant }}
-      </option>
-    </select>
+
+  <div class="form-row">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Enseignant</mat-label>
+      <mat-select formControlName="id_enseignant" required>
+        <mat-option *ngFor="let enseignant of enseignants" [value]="enseignant.id">
+          {{ enseignant.nom_enseignant }} {{ enseignant.prenom_enseignant }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <button type="submit">Mettre à Jour</button>
+
+  <div class="form-row">
+    <button mat-raised-button type="submit" color="primary">Mettre à jour Prime</button>
+    <button mat-button routerLink="/primes">Annuler</button>
+  </div>
 </form>

@@ -1,15 +1,15 @@
 <h2>Ajouter une Nouvelle Matière</h2>
 
-<form (submit)="createMatiere(nom_matiere.value, description.value)">
-  <label>
-    Nom de la Matière:
-    <input type="text" #nom_matiere required>
-  </label>
-  <label>
-    Description:
-    <textarea #description required></textarea>
-  </label>
-  <button type="submit">Ajouter Matière</button>
+<form [formGroup]="form" (ngSubmit)="createMatiere()">
+  <mat-form-field style="width: 100%;">
+    <mat-label>Nom de la Matière</mat-label>
+    <input matInput placeholder="Nom de la Matière" formControlName="nom_matiere" required>
+  </mat-form-field>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="Description" formControlName="description" required></textarea>
+  </mat-form-field>
+  <button mat-raised-button type="submit" color="primary">Ajouter Matière</button>
 </form>
 
-<button routerLink="/matieres">Retour à la Liste</button>
+<button mat-button routerLink="/matieres">Retour à la Liste</button>

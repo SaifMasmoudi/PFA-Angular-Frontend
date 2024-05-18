@@ -37,16 +37,13 @@ export class CreateEmploiComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllSalles();
-    this.getAllAnnees();
   }
 
   getAllSalles(): void {
     this.salleService.getAllSalles().subscribe(salles => this.salles = salles);
   }
 
-  getAllAnnees(): void {
-    this.anneeService.getAllAnneeUniversitaires().subscribe(annees => this.annees = annees);
-  }
+ 
 
   onCreateEmployi(): void {
     if (this.createEmploiForm.valid) {

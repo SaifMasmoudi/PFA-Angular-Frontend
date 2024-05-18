@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Enseignant } from 'src/Modeles/Enseignant';
 import { Prime } from 'src/Modeles/Prime';
@@ -13,17 +14,23 @@ import { PrimeService } from 'src/Services/prime.service';
 export class EditPrimeComponent {
   prime: Prime;
   enseignants: Enseignant[] = [];
+  form: FormGroup;
 
   constructor(
     private primeService: PrimeService,
     private enseignantService: EnseignantService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {
     this.prime = {
       montant_prime: '',
       id_enseignant: 0
     };
+    this.form = this.formBuilder.group({
+      montant_prime: ['', Validators.required],
+      id_enseignant: ['', Validators.required]
+    });
   }
 
   ngOnInit(): void {
@@ -38,6 +45,10 @@ export class EditPrimeComponent {
     this.primeService.getPrimeById(id).subscribe(
       (data) => {
         this.prime = data;
+        this.form.patchValue({
+          montant_prime: this.prime.montant_prime,
+          id_enseignant: this.prime.id_enseignant
+        });
       },
       (error) => {
         console.error('Erreur lors de la récupération de la prime', error);
@@ -59,7 +70,7 @@ export class EditPrimeComponent {
   updatePrime(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.primeService.updatePrime(+id, this.prime).subscribe(
+      this.primeService.updatePrime(+id, this.form.value).subscribe(
         (data) => {
           this.router.navigate(['/primes']);
         },

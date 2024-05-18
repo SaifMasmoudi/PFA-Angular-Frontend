@@ -1,13 +1,14 @@
-<div *ngIf="niveauToEdit">
-    <h2>Editer le Niveau</h2>
-    <form (submit)="updateNiveau()">
-      <label>
-        Nom du Niveau:
-        <input type="text" [(ngModel)]="niveauToEdit.nom_niveau" name="nom_niveau" required>
-      </label>
-      <button type="submit">Mettre à jour</button>
-    </form>
-  </div>
-  
-  <button routerLink="/niveaux">Retour à la Liste</button>
-  
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Modifier un niveau</h2>
+
+  <form [formGroup]="form" (ngSubmit)="updateNiveau()" style="width: 100%;">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Nom du niveau</mat-label>
+      <input matInput placeholder="Nom du Niveau" formControlName="nom_niveau">
+    </mat-form-field>
+
+      <button mat-raised-button type="submit" color="primary">Mettre à jour</button>
+      <button mat-button routerLink="/niveaux">Retour à la Liste</button>
+
+  </form>
+</div>

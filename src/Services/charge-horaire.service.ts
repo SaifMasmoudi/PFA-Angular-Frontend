@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ChargeHoraire } from 'src/Modeles/ChargeHoraire';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,10 @@ export class ChargeHoraireService {
 
   private apiUrl = 'http://localhost:8000/api/charge_horaires';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient){}
+   
+
+
 
   getAllChargeHoraires(): Observable<ChargeHoraire[]> {
     return this.http.get<ChargeHoraire[]>(this.apiUrl);
@@ -32,11 +36,13 @@ export class ChargeHoraireService {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
-  getChargeHorairesByNiveauMatiereId(idNiveauMatiere: number): Observable<ChargeHoraire[]> {
-    return this.http.get<ChargeHoraire[]>(`${this.apiUrl}/res/${idNiveauMatiere}`);
+  getChargeHorairesByNiveauMatiere(idNiveauMatiere: number): Observable<ChargeHoraire[]> {
+    return this.http.get<ChargeHoraire[]>(`/res/${idNiveauMatiere}`);
   }
 
-  getChargeHorairesByEnseignantId(idEnseignant: number): Observable<ChargeHoraire[]> {
-    return this.http.get<ChargeHoraire[]>(`${this.apiUrl}/res/${idEnseignant}`);
+  getChargeHorairesByEnseignant(idEnseignant: number): Observable<ChargeHoraire[]> {
+    return this.http.get<ChargeHoraire[]>(`/res/${idEnseignant}`);
   }
+
+  
 }

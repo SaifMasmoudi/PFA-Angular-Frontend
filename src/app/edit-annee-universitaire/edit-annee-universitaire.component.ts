@@ -10,52 +10,29 @@ import { ChargeHoraireService } from 'src/Services/charge-horaire.service';
   styleUrls: ['./edit-annee-universitaire.component.css']
 })
 export class EditAnneeUniversitaireComponent {
-  anneeUniversitaire: AnneeUniversitaire = {
-    id: 0,
-    nom_annee: '',
-    id_charge_horaire: 0
+  annee: AnneeUniversitaire = {
+    nom_annee: 0,
+    semestre: ''
   };
-  chargeHoraires: ChargeHoraire[] = [];
+
   constructor(
-    private anneeUniversitaireService: AnneeUniversitaireService,
-    private chargeHoraireService: ChargeHoraireService,
     private route: ActivatedRoute,
+    private anneeService: AnneeUniversitaireService,
     private router: Router
-  ) { this.getAllChargeHoraires();}
-  getAllChargeHoraires() {
-    this.chargeHoraireService.getAllChargeHoraires().subscribe(
-      (data) => {
-        this.chargeHoraires = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des charges horaires :', error);
-      }
-    );
-  }
-  ngOnInit() {
-    const id = this.route.snapshot.params['id'];
-    this.getAnneeUniversitaireById(id);
+  ) { }
+
+  ngOnInit(): void {
+    this.getAnnee();
   }
 
-  getAnneeUniversitaireById(id: number) {
-    this.anneeUniversitaireService.getAnneeUniversitaireById(id).subscribe(
-      (data) => {
-        this.anneeUniversitaire = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération de l\'année universitaire :', error);
-      }
-    );
+  getAnnee(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.anneeService.getAnnee(id).subscribe(annee => this.annee = annee);
   }
 
-  updateAnneeUniversitaire() {
-    this.anneeUniversitaireService.updateAnneeUniversitaire(this.anneeUniversitaire.id!, this.anneeUniversitaire).subscribe(
-      () => {
-        this.router.navigate(['/annee-universitaires']);
-      },
-      (error) => {
-        console.error('Erreur lors de la mise à jour de l\'année universitaire :', error);
-      }
+  updateAnnee(): void {
+    this.anneeService.updateAnnee(this.annee.nom_annee, this.annee).subscribe(
+      () => this.router.navigate(['/annees'])
     );
   }
 }

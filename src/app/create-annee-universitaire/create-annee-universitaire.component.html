@@ -1,18 +1,14 @@
-<h2>Ajouter une année universitaire</h2>
+<h1>Créer une nouvelle année universitaire</h1>
 
-<form (ngSubmit)="createAnneeUniversitaire()">
+<form (ngSubmit)="createAnnee()">
+    <div>
+        <label for="nom_annee">annee</label>
+        <input type="text" id="nom_annee" name="nom_annee" [(ngModel)]="annee.nom_annee" required>
+      </div>
   <div>
-    <label for="nom_annee">Nom de l'année :</label>
-    <input type="text" id="nom_annee" [(ngModel)]="newAnneeUniversitaire.nom_annee" name="nom_annee" required>
+    <label for="semestre">Semestre:</label>
+    <input type="text" id="semestre" name="semestre" [(ngModel)]="annee.semestre" required>
   </div>
-  <div>
-    <label for="id_charge_horaire">Charge horaire :</label>
-    <select id="id_charge_horaire" [(ngModel)]="newAnneeUniversitaire.id_charge_horaire" name="id_charge_horaire" required>
-      <option *ngFor="let chargeHoraire of chargeHoraires" [value]="chargeHoraire.id">
-        {{ chargeHoraire.id }}
-      </option>
-    </select>
-  </div>
-  
+
   <button type="submit">Créer</button>
 </form>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Niveau } from 'src/Modeles/Niveau';
 import { NiveauService } from 'src/Services/niveau.service';
@@ -8,32 +9,45 @@ import { NiveauService } from 'src/Services/niveau.service';
   styleUrls: ['./edit-niveau.component.css']
 })
 export class EditNiveauComponent {
-  niveauToEdit: Niveau | null = null;
+  form!: FormGroup;
+  niveauId!: number;
 
   constructor(
     private niveauService: NiveauService,
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.getNiveau(+id);
-    }
+    this.niveauId = +this.route.snapshot.paramMap.get('id')!;
+
+    this.form = this.formBuilder.group({
+      nom_niveau: ['', Validators.required]
+    });
+
+    this.getNiveau(this.niveauId);
   }
 
   getNiveau(id: number): void {
-    this.niveauService.getNiveauById(id).subscribe(niveau => {
-      this.niveauToEdit = { ...niveau };
+    this.niveauService.getNiveauById(id).subscribe((niveau: Niveau) => {
+      this.form.patchValue({
+        nom_niveau: niveau.nom_niveau
+      });
     });
   }
 
   updateNiveau(): void {
-    if (this.niveauToEdit) {
-      this.niveauService.updateNiveau(this.niveauToEdit.id!, this.niveauToEdit).subscribe(() => {
+    if (this.form.valid) {
+      const updatedNiveau: Niveau = {
+        id: this.niveauId,
+        nom_niveau: this.form.value.nom_niveau
+      };
+      this.niveauService.updateNiveau(this.niveauId, updatedNiveau).subscribe(() => {
         this.router.navigate(['/niveaux']);
       });
+    } else {
+      console.log('Form is invalid');
     }
   }
 }
