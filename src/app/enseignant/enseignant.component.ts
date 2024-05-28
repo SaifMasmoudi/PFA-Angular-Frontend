@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Enseignant } from 'src/Modeles/Enseignant';
 import { EnseignantService } from 'src/Services/enseignant.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-enseignant',
@@ -14,7 +16,8 @@ export class EnseignantComponent implements OnInit {
 
   constructor(
     private enseignantService: EnseignantService,
-    private router: Router
+    private router: Router,    private dialog: MatDialog
+
   ) { }
 
   ngOnInit(): void {
@@ -33,16 +36,25 @@ export class EnseignantComponent implements OnInit {
   }
 
   deleteEnseignant(id: number): void {
-    if (id !== undefined) {
-      this.enseignantService.deleteEnseignant(id).subscribe(
-        () => {
-          this.enseignants = this.enseignants.filter((e) => e.id !== id);
-        },
-        (error) => {
-          console.error('Erreur lors de la suppression de l\'enseignant', error);
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      height: '200px',
+      width: '300px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (id !== undefined) {
+          this.enseignantService.deleteEnseignant(id).subscribe(
+            () => {
+              this.enseignants = this.enseignants.filter((e) => e.id !== id);
+            },
+            (error) => {
+              console.error('Erreur lors de la suppression de l\'enseignant', error);
+            }
+          );
         }
-      );
-    }
+      }
+    });
+    
   }
 
   editEnseignant(id :number): void {

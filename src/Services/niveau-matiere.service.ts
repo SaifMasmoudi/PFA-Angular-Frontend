@@ -33,10 +33,10 @@ export class NiveauMatiereService {
   }
 
   getNiveauMatieresByNiveau(idNiveau: number): Observable<NiveauMatiere[]> {
-    return this.http.get<NiveauMatiere[]>(`${this.apiUrl}/res/${idNiveau}`);
+    return this.http.get<NiveauMatiere[]>(`${this.apiUrl}/showniveau/${idNiveau}`);
   }
 
   getNiveauMatieresByMatiere(idMatiere: number): Observable<NiveauMatiere[]> {
-    return this.http.get<NiveauMatiere[]>(`${this.apiUrl}/res/${idMatiere}`);
+    return this.http.get<NiveauMatiere[]>(`${this.apiUrl}/showmatiere/${idMatiere}`);
   }
 }

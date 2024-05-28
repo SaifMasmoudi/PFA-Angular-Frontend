@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Matiere } from 'src/Modeles/Matiere';
 import { MatiereService } from 'src/Services/matiere.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-matiere',
@@ -14,7 +16,7 @@ export class MatiereComponent implements OnInit {
 
   constructor(
     private matiereService: MatiereService,
-    private router: Router
+    private router: Router,private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -26,9 +28,18 @@ export class MatiereComponent implements OnInit {
   }
 
   deleteMatiere(id: number): void {
-    this.matiereService.deleteMatiere(id).subscribe(() => {
-      this.matieres = this.matieres.filter(matiere => matiere.id !== id);
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      height: '200px',
+      width: '300px',
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.matiereService.deleteMatiere(id).subscribe(() => {
+          this.matieres = this.matieres.filter(matiere => matiere.id !== id);
+        });
+      }
+    });
+    
   }
 
   editMatiere(matiere: Matiere): void {

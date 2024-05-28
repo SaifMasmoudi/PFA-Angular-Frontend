@@ -1,0 +1,31 @@
+<h1>Liste des Emplois</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>ID Jour</th>
+      <th>ID Heure</th>
+      <th>ID Salle</th>
+      <th>ID Année</th>
+      <th>ID Charge Horaire</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emploi of emplois">
+      <td>{{ emploi.id }}</td>
+      <td>{{ emploi.id_jour }}</td>
+      <td>{{ emploi.id_heure }}</td>
+      <td>{{ emploi.id_salle }}</td>
+      <td>{{ emploi.id_annee }}</td>
+      <td>{{ emploi.id_charge_horaire }}</td>
+      <td>
+        <a [routerLink]="['/emplois/edit', emploi.id]">Éditer</a>
+        <button  *ngIf="emploi.id !== undefined" (click)="deleteEmploi(emploi.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a [routerLink]="['/emplois/create']">Créer un Emploi</a>

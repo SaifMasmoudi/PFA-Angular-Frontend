@@ -37,6 +37,12 @@ import { EditAnneeUniversitaireComponent } from './edit-annee-universitaire/edit
 import { EmploiComponent } from './emploi/emploi.component';
 import { CreateEmploiComponent } from './create-emploi/create-emploi.component';
 import { EditEmploiComponent } from './edit-emploi/edit-emploi.component';
+import { JourComponent } from './jour/jour.component';
+import { EditJourComponent } from './edit-jour/edit-jour.component';
+import { CreateJourComponent } from './create-jour/create-jour.component';
+import { HoraireComponent } from './horaire/horaire.component';
+import { CreateHoraireComponent } from './create-horaire/create-horaire.component';
+import { EditHoraireComponent } from './edit-horaire/edit-horaire.component';
 const routes: Routes = [
   { path: 'login', pathMatch: 'full', component: LoginComponent },
 
@@ -80,15 +86,24 @@ const routes: Routes = [
   { path: 'charge-horaires', component: ChargeHoraireComponent },
   { path: 'create-charge-horaire', component: CreateChargeHoraireComponent },
   { path: 'edit-charge-horaire/:id', component: EditChargeHoraireComponent },
-
-  { path: 'annee-universitaires', component: AnneeUniversitaireComponent },
+  
+  { path: 'annee-universitaire', component: AnneeUniversitaireComponent },
   { path: 'create-annee-universitaire', component: CreateAnneeUniversitaireComponent },
-  { path: 'edit-annee-universitaire/:id', component: EditAnneeUniversitaireComponent },
-
+  { path: 'edit-annee-universitaire/:nom_annee', component: EditAnneeUniversitaireComponent },
 
   { path: 'emplois', component: EmploiComponent },
-  { path: 'emplois-create', component: CreateEmploiComponent },
-  { path: 'edit-emplois/:id', component: EditEmploiComponent },
+  { path: 'emplois/create', component: CreateEmploiComponent },
+  { path:  'emplois/edit/:id', component: EditEmploiComponent },
+
+  { path: 'jours', component: JourComponent },
+  { path: 'jours/create', component: CreateJourComponent },
+  { path: 'jours/edit/:id', component: EditJourComponent },
+
+
+
+  { path: 'horaires', component: HoraireComponent },
+  { path: 'horaires/create', component: CreateHoraireComponent },
+  { path: 'horaires/edit/:id', component: EditHoraireComponent },
 ];
 
 @NgModule({

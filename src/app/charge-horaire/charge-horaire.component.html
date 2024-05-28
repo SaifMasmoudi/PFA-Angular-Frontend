@@ -8,37 +8,44 @@
 </mat-form-field>
 
 <table mat-table [dataSource]="chargeHoraires" class="mat-elevation-z8">
-   <!-- ID Column -->
-   <ng-container matColumnDef="5">
+  <!-- ID Column -->
+  <ng-container matColumnDef="5">
     <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.chargeHoraire.id}} </td>
   </ng-container>
+
   <!-- Nombre d'heures Column -->
   <ng-container matColumnDef="1">
     <th mat-header-cell *matHeaderCellDef> Nombre d'heures </th>
-    <td mat-cell *matCellDef="let element"> {{element.nb_heure}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.chargeHoraire.nb_heure}} </td>
   </ng-container>
 
   <!-- Niveau / Matière Column -->
   <ng-container matColumnDef="2">
     <th mat-header-cell *matHeaderCellDef> Niveau / Matière </th>
-    <td mat-cell *matCellDef="let element"> {{element.id_niveau_matiere}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.chargeHoraire.id_niveau_matiere}} </td>
   </ng-container>
 
   <!-- Enseignant Column -->
   <ng-container matColumnDef="3">
     <th mat-header-cell *matHeaderCellDef> Enseignant </th>
-    <td mat-cell *matCellDef="let element">{{getEnseignantName(element.id_enseignant)}} </td>
+    <td mat-cell *matCellDef="let element">{{getEnseignantName(element.chargeHoraire.id_enseignant)}} </td>
+  </ng-container>
+
+  <!-- Group Names Column -->
+  <ng-container matColumnDef="groupNames">
+    <th mat-header-cell *matHeaderCellDef> Groupes </th>
+    <td mat-cell *matCellDef="let element">{{getGroupNames(element)}} </td>
   </ng-container>
 
   <!-- Actions Column -->
   <ng-container matColumnDef="4">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="editChargeHoraire(element.id)">
+      <button (click)="editChargeHoraire(element.chargeHoraire.id)">
         <mat-icon aria-hidden="false" aria-label="Modifier" fontIcon="edit"></mat-icon>
       </button>
-      <button (click)="deleteChargeHoraire(element.id)">
+      <button (click)="deleteChargeHoraire(element.chargeHoraire.id)">
         <mat-icon aria-hidden="false" aria-label="Supprimer" fontIcon="delete"></mat-icon>
       </button>
     </td>

@@ -14,7 +14,9 @@ export class ChargeHoraireService {
   constructor(private http: HttpClient){}
    
 
-
+  getChargeHoraires(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
+  }
 
   getAllChargeHoraires(): Observable<ChargeHoraire[]> {
     return this.http.get<ChargeHoraire[]>(this.apiUrl);

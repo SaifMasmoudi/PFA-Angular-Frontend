@@ -1,0 +1,15 @@
+<div fxLayout="column">
+  <h2>Créer un Jour</h2>
+
+  <form [formGroup]="form" (ngSubmit)="createJour()" style="width: 100%;">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Jour</mat-label>
+      <mat-select formControlName="jour">
+        <mat-option *ngFor="let j of joursDeLaSemaine" [value]="j.nom">
+          {{ j.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+  </form>
+</div>

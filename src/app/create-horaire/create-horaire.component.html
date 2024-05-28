@@ -1,0 +1,12 @@
+<div fxLayout="column">
+    <h2>Créer un Horaire</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="createHoraire()" style="width: 100%;">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Heure</mat-label>
+        <input matInput placeholder="Heure" formControlName="heure">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary">Soumettre</button>
+    </form>
+  </div>
+  

@@ -4,6 +4,8 @@ import { Examen } from 'src/Modeles/Examen';
 import { NiveauMatiere } from 'src/Modeles/NiveauMatiere';
 import { ExamenService } from 'src/Services/examen.service';
 import { NiveauMatiereService } from 'src/Services/niveau-matiere.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-examen',
@@ -18,7 +20,9 @@ export class ExamenComponent implements OnInit {
   constructor(
     private examenService: ExamenService,
     private niveauMatiereService: NiveauMatiereService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
+
   ) { }
 
   ngOnInit() {
@@ -52,15 +56,24 @@ export class ExamenComponent implements OnInit {
     this.router.navigate(['/edit-examen', id]);
   }
 
-  deleteExamen(id: number) {
-    this.examenService.deleteExamen(id).subscribe(
-      () => {
-        this.getExamens();
-      },
-      (error) => {
-        console.error('Erreur lors de la suppression de l\'examen :', error);
+  deleteExamen(id: number):void {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      height: '200px',
+      width: '300px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.examenService.deleteExamen(id).subscribe(
+          () => {
+            this.getExamens();
+          },
+          (error) => {
+            console.error('Erreur lors de la suppression de l\'examen :', error);
+          }
+        );
       }
-    );
+    });
+    
   }
 
   applyFilter(event: Event) {

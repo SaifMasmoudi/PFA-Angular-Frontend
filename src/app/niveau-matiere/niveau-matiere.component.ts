@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Matiere } from 'src/Modeles/Matiere';
 import { Niveau } from 'src/Modeles/Niveau';
@@ -6,6 +7,7 @@ import { NiveauMatiere } from 'src/Modeles/NiveauMatiere';
 import { MatiereService } from 'src/Services/matiere.service';
 import { NiveauMatiereService } from 'src/Services/niveau-matiere.service';
 import { NiveauService } from 'src/Services/niveau.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-niveau-matiere',
@@ -22,7 +24,7 @@ export class NiveauMatiereComponent implements OnInit {
     private niveauMatiereService: NiveauMatiereService,
     private niveauService: NiveauService,
     private matiereService: MatiereService,
-    private router: Router
+    private router: Router,private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -44,9 +46,18 @@ export class NiveauMatiereComponent implements OnInit {
   }
 
   deleteNiveauMatiere(id: number): void {
-    this.niveauMatiereService.deleteNiveauMatiere(id).subscribe(() => {
-      this.niveauMatieres = this.niveauMatieres.filter(nm => nm.id !== id);
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      height: '200px',
+      width: '300px',
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.niveauMatiereService.deleteNiveauMatiere(id).subscribe(() => {
+          this.niveauMatieres = this.niveauMatieres.filter(nm => nm.id !== id);
+        });
+      }
+    });
+    
   }
 
   editNiveauMatiere(niveauMatiere: NiveauMatiere): void {

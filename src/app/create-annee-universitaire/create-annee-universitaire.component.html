@@ -1,14 +1,15 @@
-<h1>Créer une nouvelle année universitaire</h1>
+<div fxLayout="column">
+  <h2>Créer une Année Universitaire</h2>
 
-<form (ngSubmit)="createAnnee()">
-    <div>
-        <label for="nom_annee">annee</label>
-        <input type="text" id="nom_annee" name="nom_annee" [(ngModel)]="annee.nom_annee" required>
-      </div>
-  <div>
-    <label for="semestre">Semestre:</label>
-    <input type="text" id="semestre" name="semestre" [(ngModel)]="annee.semestre" required>
-  </div>
-
-  <button type="submit">Créer</button>
-</form>
+  <form [formGroup]="form" (ngSubmit)="createAnneeUniversitaire()" style="width: 100%;">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Nom Année</mat-label>
+      <input matInput placeholder="Nom Année" formControlName="nom_annee">
+    </mat-form-field>
+    <mat-form-field style="width: 100%;">
+      <mat-label>Semester</mat-label>
+      <input matInput placeholder="Semester" formControlName="semester">
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+  </form>
+</div>

@@ -1,86 +1,64 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AnneeUniversitaire } from 'src/Modeles/AnneeUniversitaire';
 import { Emploi } from 'src/Modeles/Emploi';
-import { Salle } from 'src/Modeles/Salle';
-import { AnneeUniversitaireService } from 'src/Services/annee-universitaire.service';
 import { EmploiService } from 'src/Services/emploi.service';
+import { JourService } from 'src/Services/jour.service';
+import { HoraireService } from 'src/Services/horaire.service';
 import { SalleService } from 'src/Services/salle.service';
+import { ChargeHoraireService } from 'src/Services/charge-horaire.service';
+import { AnneeUniversitaireService } from 'src/Services/annee-universitaire.service';
 
 @Component({
   selector: 'app-edit-emploi',
   templateUrl: './edit-emploi.component.html',
   styleUrls: ['./edit-emploi.component.css']
 })
-export class EditEmploiComponent {
-  emploiToEdit: Emploi | null = null;
-  salles: Salle[] = [];
-  annees: AnneeUniversitaire[] = [];
-  jours: string[] = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-  form!: FormGroup;
+export class EditEmploiComponent implements OnInit {
+  emploi: Emploi = {
+    id_jour: 0,
+    id_heure: 0,
+    id_salle: 0,
+    id_annee: 0,
+    id_charge_horaire: 0
+  };
 
   constructor(
-    private formBuilder: FormBuilder,
     private emploiService: EmploiService,
-    private salleService: SalleService,
-    private anneeService: AnneeUniversitaireService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.initForm();
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.getEmployi(+id);
-      this.getAllSalles();
+      this.getEmploiById(+id);
     }
   }
 
-  initForm(): void {
-    this.form = this.formBuilder.group({
-      jour: [''],
-      heure_debut: [''],
-      heure_fin: [''],
-      id_salle: [''],
-      id_annee: ['']
-    });
+  getEmploiById(id: number): void {
+    this.emploiService.getEmploiById(id).subscribe(
+      (data) => {
+        this.emploi = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de l\'emploi:', error);
+      }
+    );
   }
 
-  getEmployi(id: number): void {
-    this.emploiService.getEmployi(id).subscribe(emploi => {
-      this.emploiToEdit = emploi;
-      this.form.patchValue({
-        jour: emploi.jour,
-        heure_debut: emploi.heure_debut,
-        heure_fin: emploi.heure_fin,
-        id_salle: emploi.id_salle,
-        id_annee: emploi.id_annee
-      });
-    });
-  }
-
-  getAllSalles(): void {
-    this.salleService.getAllSalles().subscribe(salles => {
-      this.salles = salles;
-    });
-  }
-
-
-  updateEmployi(): void {
-    if (this.emploiToEdit && this.emploiToEdit.id) {
-      const updatedEmployi: Emploi = {
-        ...this.emploiToEdit,
-        jour: this.form.value.jour,
-        heure_debut: this.form.value.heure_debut,
-        heure_fin: this.form.value.heure_fin,
-        id_salle: this.form.value.id_salle,
-        id_annee: this.form.value.id_annee
-      };
-      this.emploiService.updateEmployi(updatedEmployi.id!, updatedEmployi).subscribe(() => {
-        this.router.navigate(['/emplois']);
-      });
+  updateEmploi(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.emploiService.updateEmploi(+id, this.emploi).subscribe(
+        (data) => {
+          console.log('Emploi mis à jour:', data);
+          this.router.navigate(['/emplois']);
+        },
+        (error) => {
+          console.error('Erreur lors de la mise à jour de l\'emploi:', error);
+        }
+      );
     }
   }
 }

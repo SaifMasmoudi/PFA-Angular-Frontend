@@ -4,6 +4,8 @@ import { Enseignant } from 'src/Modeles/Enseignant';
 import { Prime } from 'src/Modeles/Prime';
 import { EnseignantService } from 'src/Services/enseignant.service';
 import { PrimeService } from 'src/Services/prime.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-prime',
@@ -18,7 +20,7 @@ export class PrimeComponent implements OnInit {
   constructor(
     private primeService: PrimeService,
     private enseignantService: EnseignantService,
-    private router: Router
+    private router: Router, private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -35,9 +37,18 @@ export class PrimeComponent implements OnInit {
   }
 
   deletePrime(id: number): void {
-    this.primeService.deletePrime(id).subscribe(() => {
-      this.primes = this.primes.filter(prime => prime.id !== id);
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      height: '200px',
+      width: '300px',
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.primeService.deletePrime(id).subscribe(() => {
+          this.primes = this.primes.filter(prime => prime.id !== id);
+        });
+      }
+    });
+   
   }
 
   editPrime(prime: Prime): void {

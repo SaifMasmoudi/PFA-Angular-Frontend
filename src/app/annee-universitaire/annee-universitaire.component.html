@@ -1,23 +1,39 @@
-<h1>Liste des années universitaires</h1>
+<div fxLayout="row" fxLayoutAlign="end center">
+  <button routerLink="/create-annee-universitaire" mat-raised-button color="primary">Créer Nouvelle Année</button>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nom de l'année</th>
-      <th>Semestre</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let annee of annees">
-      <td>{{ annee.nom_annee }}</td>
-      <td>{{ annee.semestre }}</td>
-      <td>
-        <a [routerLink]="['/annees', annee.nom_annee, 'edit']">Modifier</a>
-        <button (click)="deleteAnnee(annee.nom_annee)">Supprimer</button>
-      </td>
-    </tr>
-  </tbody>
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. 2023-2024" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="annees" class="mat-elevation-z8">
+
+  <!-- Nom Annee Column -->
+  <ng-container matColumnDef="nom_annee">
+    <th mat-header-cell *matHeaderCellDef> Nom Année </th>
+    <td mat-cell *matCellDef="let element"> {{element.nom_annee}} </td>
+  </ng-container>
+
+  <!-- Semester Column -->
+  <ng-container matColumnDef="semester">
+    <th mat-header-cell *matHeaderCellDef> Semester </th>
+    <td mat-cell *matCellDef="let element"> {{element.semester}} </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="editAnneeUniversitaire(element.nom_annee)">
+        <mat-icon aria-hidden="false" aria-label="Modifier" fontIcon="edit"></mat-icon>
+      </button>
+      <button (click)="deleteAnneeUniversitaire(element.nom_annee)">
+        <mat-icon aria-hidden="false" aria-label="Supprimer" fontIcon="delete"></mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
-<a [routerLink]="['/create-annee-universitaire']">Créer une nouvelle année universitaire</a>

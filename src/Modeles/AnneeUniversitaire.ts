@@ -1,6 +1,6 @@
 export interface AnneeUniversitaire {
-  nom_annee: number;
-  semestre: string;
+  nom_annee: string;
+  semester : string;
  
   }
   

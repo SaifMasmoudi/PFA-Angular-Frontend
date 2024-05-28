@@ -1,0 +1,12 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2>Modifier un Horaire</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="updateHoraire()" style="width: 100%;">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Heure</mat-label>
+        <input matInput placeholder="Heure" formControlName="heure">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary">Soumettre</button>
+    </form>
+  </div>
+  

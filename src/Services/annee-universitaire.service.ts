@@ -12,24 +12,24 @@ export class AnneeUniversitaireService {
 
   constructor(private http: HttpClient) { }
 
-  getAnnees(): Observable<AnneeUniversitaire[]> {
+  getAnneeUniversitaires(): Observable<AnneeUniversitaire[]> {
     return this.http.get<AnneeUniversitaire[]>(this.apiUrl);
   }
 
-  getAnnee(id: number): Observable<AnneeUniversitaire> {
-    return this.http.get<AnneeUniversitaire>(`${this.apiUrl}/${id}`);
+  getAnneeUniversitaire(nom_annee: string): Observable<AnneeUniversitaire> {
+    return this.http.get<AnneeUniversitaire>(`${this.apiUrl}/${nom_annee}`);
   }
 
-  createAnnee(annee: AnneeUniversitaire): Observable<AnneeUniversitaire> {
+  addAnneeUniversitaire(annee: AnneeUniversitaire): Observable<AnneeUniversitaire> {
     return this.http.post<AnneeUniversitaire>(this.apiUrl, annee);
   }
 
-  updateAnnee(id: number, annee: AnneeUniversitaire): Observable<AnneeUniversitaire> {
-    return this.http.put<AnneeUniversitaire>(`${this.apiUrl}/${id}`, annee);
+  updateAnneeUniversitaire(nom_annee: string, annee: AnneeUniversitaire): Observable<AnneeUniversitaire> {
+    return this.http.put<AnneeUniversitaire>(`${this.apiUrl}/${nom_annee}`, annee);
   }
 
-  deleteAnnee(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  deleteAnneeUniversitaire(nom_annee: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${nom_annee}`);
   }
 
 

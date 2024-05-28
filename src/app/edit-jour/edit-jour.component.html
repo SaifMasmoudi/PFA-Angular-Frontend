@@ -1,0 +1,11 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Modifier un Jour</h2>
+
+  <form [formGroup]="form" (ngSubmit)="updateJour()" style="width: 100%;">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="Nom du Jour" formControlName="nom">
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+  </form>
+</div>

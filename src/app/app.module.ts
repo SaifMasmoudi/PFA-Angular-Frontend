@@ -61,6 +61,12 @@ import { CreateAnneeUniversitaireComponent } from './create-annee-universitaire/
 import { EmploiComponent } from './emploi/emploi.component';
 import { CreateEmploiComponent } from './create-emploi/create-emploi.component';
 import { EditEmploiComponent } from './edit-emploi/edit-emploi.component';
+import { EditJourComponent } from './edit-jour/edit-jour.component';
+import { CreateJourComponent } from './create-jour/create-jour.component';
+import { JourComponent } from './jour/jour.component';
+import { HoraireComponent } from './horaire/horaire.component';
+import { CreateHoraireComponent } from './create-horaire/create-horaire.component';
+import { EditHoraireComponent } from './edit-horaire/edit-horaire.component';
 
 
 
@@ -107,6 +113,12 @@ import { EditEmploiComponent } from './edit-emploi/edit-emploi.component';
     EmploiComponent,
     CreateEmploiComponent,
     EditEmploiComponent,
+    EditJourComponent,
+    CreateJourComponent,
+    JourComponent,
+    HoraireComponent,
+    CreateHoraireComponent,
+    EditHoraireComponent,
     
   ],
   imports: [ MatTableModule,

@@ -10,33 +10,53 @@ export class EmploiService {
 
   private apiUrl = 'http://localhost:8000/api/emplois';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getEmployis(): Observable<Emploi[]> {
+  getAllEmplois(): Observable<Emploi[]> {
     return this.http.get<Emploi[]>(this.apiUrl);
   }
 
-  getEmployi(id: number): Observable<Emploi> {
-    return this.http.get<Emploi>(`${this.apiUrl}/${id}`);
+  getEmploiById(id: number): Observable<Emploi> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Emploi>(url);
   }
 
-  getEmploisBySalle(idSalle: number): Observable<Emploi[]> {
-    return this.http.get<Emploi[]>(`${this.apiUrl}/emp/${idSalle}`);
-  }
-
-  getEmploisByAnnee(idAnnee: number): Observable<Emploi[]> {
-    return this.http.get<Emploi[]>(`${this.apiUrl}/emp/${idAnnee}`);
-  }
-
-  createEmployi(emploi: Emploi): Observable<Emploi> {
+  createEmploi(emploi: Emploi): Observable<Emploi> {
     return this.http.post<Emploi>(this.apiUrl, emploi);
   }
 
-  updateEmployi(id: number, emploi: Emploi): Observable<Emploi> {
-    return this.http.put<Emploi>(`${this.apiUrl}/${id}`, emploi);
+  updateEmploi(id: number, emploi: Emploi): Observable<Emploi> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<Emploi>(url, emploi);
   }
 
-  deleteEmployi(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  deleteEmploi(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url);
+  }
+
+  getEmploisBySalle(idsalle: number): Observable<Emploi[]> {
+    const url = `${this.apiUrl}/emp/${idsalle}`;
+    return this.http.get<Emploi[]>(url);
+  }
+
+  getEmploisByAnnee(idannee: number): Observable<Emploi[]> {
+    const url = `${this.apiUrl}/emp/${idannee}`;
+    return this.http.get<Emploi[]>(url);
+  }
+
+  getEmploisByJour(idjour: number): Observable<Emploi[]> {
+    const url = `${this.apiUrl}/emp/${idjour}`;
+    return this.http.get<Emploi[]>(url);
+  }
+
+  getEmploisByHeure(idheure: number): Observable<Emploi[]> {
+    const url = `${this.apiUrl}/emp/${idheure}`;
+    return this.http.get<Emploi[]>(url);
+  }
+
+  getEmploisByChargeHoraire(idcharge: number): Observable<Emploi[]> {
+    const url = `${this.apiUrl}/emp/${idcharge}`;
+    return this.http.get<Emploi[]>(url);
   }
 }

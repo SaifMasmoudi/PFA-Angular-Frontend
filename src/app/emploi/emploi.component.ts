@@ -1,85 +1,42 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AnneeUniversitaire } from 'src/Modeles/AnneeUniversitaire';
 import { Emploi } from 'src/Modeles/Emploi';
-import { Salle } from 'src/Modeles/Salle';
-import { AnneeUniversitaireService } from 'src/Services/annee-universitaire.service';
 import { EmploiService } from 'src/Services/emploi.service';
-import { SalleService } from 'src/Services/salle.service';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+
 
 @Component({
   selector: 'app-emploi',
   templateUrl: './emploi.component.html',
   styleUrls: ['./emploi.component.css']
 })
-export class EmploiComponent {
+export class EmploiComponent implements OnInit {
   emplois: Emploi[] = [];
-  salles: Salle[] = [];
-  annees: AnneeUniversitaire[] = [];
-  displayedColumns: string[] = ['1', '2', '3', '4', '5', '6', '7'];
 
-  constructor(
-    private emploiService: EmploiService,
-    private salleService: SalleService,
-    private anneeService: AnneeUniversitaireService,
-    private router: Router,
-    private dialog: MatDialog
-  ) { }
+  constructor(private emploiService: EmploiService) { }
 
   ngOnInit(): void {
-    this.getAllEmployis();
-    this.getAllSalles();
+    this.getAllEmplois();
   }
 
-  getAllEmployis(): void {
-    this.emploiService.getEmployis().subscribe(emplois => this.emplois = emplois);
-  }
-
-  getAllSalles(): void {
-    this.salleService.getAllSalles().subscribe(salles => this.salles = salles);
-  }
-
-  
-  deleteEmployi(id: number): void {
-    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      height: '200px',
-      width: '300px',
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.emploiService.deleteEmployi(id).subscribe(() => {
-          this.emplois = this.emplois.filter(emploi => emploi.id !== id);
-        });
+  getAllEmplois(): void {
+    this.emploiService.getAllEmplois().subscribe(
+      (data) => {
+        this.emplois = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des emplois:', error);
       }
-    });
+    );
   }
 
-  editEmployi(emploi: Emploi): void {
-    if (emploi && emploi.id) {
-      this.router.navigate(['/edit-emplois', emploi.id]);
-    } else {
-      console.error("L'identifiant de l'emploi est indéfini.");
-    }
+  deleteEmploi(id: number): void {
+    this.emploiService.deleteEmploi(id).subscribe(
+      () => {
+        this.getAllEmplois();
+      },
+      (error) => {
+        console.error('Erreur lors de la suppression de l\'emploi:', error);
+      }
+    );
   }
-
-  getSalleName(idSalle: number): string {
-    const salle = this.salles.find(s => s.id === idSalle);
-    return salle ? salle.num_salle : '';
-  }
-
- 
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    // Apply your filtering logic here if needed
-  }
-
-
-
-
-
-
-  
 }
