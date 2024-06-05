@@ -1,6 +1,7 @@
 <div fxLayout="column">
-  <h2>Créer une Salle</h2>
-
+  <br>
+  <h2 fxLayoutAlign="center center">Créer une Salle</h2>
+<br>
   <form [formGroup]="form" (ngSubmit)="createSalle()" style="width: 100%;">
     <mat-form-field style="width: 100%;">
       <mat-label>Numéro de Salle</mat-label>
@@ -10,6 +11,9 @@
       <mat-label>Capacité</mat-label>
       <input matInput placeholder="Capacité" formControlName="capacite">
     </mat-form-field>
-    <button mat-raised-button type="submit" color="primary">Soumettre</button>
-  </form>
+    <div fxLayout="row" fxLayoutGap="16px">
+      <button mat-raised-button type="submit" color="primary">Soumettre</button>
+      <button routerLink="/salle" mat-raised-button color="warn">Retour</button> 
+    </div> 
+  </form><br>
 </div>

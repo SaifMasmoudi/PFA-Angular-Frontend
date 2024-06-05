@@ -1,5 +1,8 @@
-
-<h2>Creer un prime</h2>
+<br>
+  <div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Ajouter une prime</h2>
+  <br>
+  </div>
 <form [formGroup]="form" (ngSubmit)="createPrime()">
   <div class="form-row">
     <mat-form-field style="width: 100%;">
@@ -18,9 +21,9 @@
       </mat-select>
     </mat-form-field>
   </div>
-
-  <div class="form-row">
-    <button mat-raised-button type="submit" color="primary">Attribuer Prime</button>
-    <button mat-button routerLink="/primes">Retour à la Liste</button>
-  </div>
-</form>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+    <button routerLink="/primes" mat-raised-button color="warn">Retour</button> 
+  </div> 
+  
+</form><br>

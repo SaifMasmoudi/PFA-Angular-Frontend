@@ -1,11 +1,8 @@
-<div fxLayout="row" fxLayoutAlign="end center">
+<br><br><div fxLayout="row" fxLayoutAlign="end center">
   <button routerLink="/jours/create" mat-raised-button color="primary">Créer un Jour</button>
 </div>
 
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Lundi" #input>
-</mat-form-field>
+<br><br>
 
 <table mat-table [dataSource]="jours" class="mat-elevation-z8">
   <!-- ID Column -->

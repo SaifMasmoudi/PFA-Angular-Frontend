@@ -1,3 +1,4 @@
+<br><br>
 <div fxLayout="column">
   <div fxLayout="row" fxLayoutAlign="end center">
     <button routerLink="/create-groupe" mat-raised-button color="primary">Créer un Nouveau Groupe</button>
@@ -5,7 +6,7 @@
 
   <div fxLayout="row"> <!-- Nouveau conteneur pour le filtre -->
     <mat-form-field>
-      <mat-label>Filter</mat-label>
+      <mat-label>Chercher votre groupe</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Salle 101" #input>
     </mat-form-field>
   </div>

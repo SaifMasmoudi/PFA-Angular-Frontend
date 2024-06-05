@@ -67,6 +67,7 @@ import { JourComponent } from './jour/jour.component';
 import { HoraireComponent } from './horaire/horaire.component';
 import { CreateHoraireComponent } from './create-horaire/create-horaire.component';
 import { EditHoraireComponent } from './edit-horaire/edit-horaire.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -119,6 +120,7 @@ import { EditHoraireComponent } from './edit-horaire/edit-horaire.component';
     HoraireComponent,
     CreateHoraireComponent,
     EditHoraireComponent,
+    HomeComponent,
     
   ],
   imports: [ MatTableModule,

@@ -1,5 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="center center">
-  <h2>Modifier un groupe</h2>
+  <br>
+  <h2>Modifier un groupe</h2><br>
 
   <form [formGroup]="form" (ngSubmit)="updateGroupe()" style="width: 100%;">
     <mat-form-field style="width: 100%;">
@@ -14,6 +15,9 @@
       </mat-select>
     </mat-form-field>
 
-    <button mat-raised-button type="submit" color="primary">Soumettre</button>
-  </form>
+    <div fxLayout="row" fxLayoutGap="16px">
+      <button mat-raised-button type="submit" color="primary">Soumettre</button>
+      <button routerLink="/groupes" mat-raised-button color="warn">Retour</button> 
+     </div>
+  </form><br>
 </div>

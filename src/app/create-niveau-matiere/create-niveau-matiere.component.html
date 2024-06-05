@@ -1,4 +1,10 @@
-<h2>Ajouter un Niveau-Matière</h2>
+
+<br>
+<div fxLayout="column" fxLayoutAlign="center center">
+
+<h2>Creer un  Niveau-Matière</h2>
+<br>
+</div>
 
 <form [formGroup]="form" (ngSubmit)="createNiveauMatiere()">
   <div class="form-field">
@@ -18,8 +24,10 @@
       </mat-select>
     </mat-form-field>
   </div>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+    <button routerLink="/niveau-matieres" mat-raised-button color="warn">Retour</button> 
+  </div> 
+ </form><br>
 
-  <button mat-raised-button type="submit" color="primary">Ajouter Niveau-Matière</button>
-</form>
 
-<button mat-button routerLink="/niveau-matieres">Retour à la Liste</button>

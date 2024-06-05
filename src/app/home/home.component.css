@@ -1,0 +1,22 @@
+body {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url('/assets/Images/login.jpg');
+    height: 100vh; /* Assure que le corps prend toute la hauteur de la fenêtre */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour améliorer la lisibilité du texte */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1, h2 {
+    margin: 10px 0;
+}

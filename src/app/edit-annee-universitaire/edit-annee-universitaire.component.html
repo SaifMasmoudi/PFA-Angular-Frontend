@@ -1,6 +1,6 @@
-<div fxLayout="column">
-  <h2>Modifier une Année Universitaire</h2>
-
+  <br><div fxLayout="column" fxLayoutAlign="center center">
+    <h2>Modifier une Année Universitaire</h2>
+  <br>
   <form [formGroup]="form" (ngSubmit)="updateAnneeUniversitaire()" style="width: 100%;">
     <mat-form-field style="width: 100%;">
       <mat-label>Nom Année</mat-label>
@@ -10,6 +10,8 @@
       <mat-label>Semester</mat-label>
       <input matInput placeholder="Semester" formControlName="semester">
     </mat-form-field>
-    <button mat-raised-button type="submit" color="primary">Mettre à jour</button>
-  </form>
+    <div fxLayout="row" fxLayoutGap="16px">
+      <button mat-raised-button type="submit" color="primary">Soumettre</button>
+      <button routerLink="/annee-universitaire" mat-raised-button color="warn">Retour</button> 
+    </div>   </form><br>
 </div>

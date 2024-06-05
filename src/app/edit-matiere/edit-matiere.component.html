@@ -1,6 +1,6 @@
-<div fxLayout="column" fxLayoutAlign="center center">
+<br><div fxLayout="column" fxLayoutAlign="center center">
   <h2>Modifier une matiére</h2>
-
+<br>
   <form [formGroup]="form" (ngSubmit)="updateMatiere()" style="width: 100%;">
     <mat-form-field style="width: 100%;">
       <mat-label>Nom de matiére</mat-label>
@@ -11,8 +11,10 @@
       <input matInput placeholder="Nom de matiére" formControlName="description">
     </mat-form-field>
 
-      <button mat-raised-button type="submit" color="primary">Mettre à jour</button>
-      <button mat-button routerLink="/niveaux">Retour à la Liste</button>
+    <div fxLayout="row" fxLayoutGap="16px">
+      <button mat-raised-button type="submit" color="primary">Soumettre</button>
+      <button routerLink="/matieres" mat-raised-button color="warn">Retour</button> 
+     </div>
 
-  </form>
+  </form><br>
 </div>

@@ -1,12 +1,14 @@
-<div fxLayout="column">
+<div fxLayout="column"fxLayoutAlign="center center"><br>
     <h2>Créer un Horaire</h2>
-  
+  <br>
     <form [formGroup]="form" (ngSubmit)="createHoraire()" style="width: 100%;">
       <mat-form-field style="width: 100%;">
         <mat-label>Heure</mat-label>
         <input matInput placeholder="Heure" formControlName="heure">
       </mat-form-field>
-      <button mat-raised-button type="submit" color="primary">Soumettre</button>
-    </form>
+      <div fxLayout="row" fxLayoutGap="16px">
+        <button mat-raised-button type="submit" color="primary">Soumettre</button>
+        <button routerLink="/horaires" mat-raised-button color="warn">Retour</button> 
+      </div>     </form><br>
   </div>
   

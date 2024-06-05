@@ -17,7 +17,7 @@
         <a mat-list-item  routerLink="/conges"><mat-icon>supervised_user_circle</mat-icon><span>conges </span></a>
         <a mat-list-item  routerLink="/charge-horaires"><mat-icon>supervised_user_circle</mat-icon><span>charge-horaires</span></a>
         <a mat-list-item  routerLink="/annee-universitaire"><mat-icon>supervised_user_circle</mat-icon><span>annee-universitaires</span></a>
-        <a mat-list-item  routerLink="/emplois"><mat-icon></mat-icon><span>Emploi</span></a>
+        <a mat-list-item  routerLink="/emploi"><mat-icon></mat-icon><span>Emploi</span></a>
 
         <a mat-list-item  routerLink="/jours"><mat-icon>supervised_user_circle</mat-icon><span>Jour</span></a>
         <a mat-list-item  routerLink="/horaires"><mat-icon>supervised_user_circle</mat-icon><span>Horaire</span></a>
@@ -32,48 +32,28 @@
     <!-- Side nav content-->
     <mat-sidenav-content>
       <mat-toolbar color="primary">
-        <div fxFlex fxLayout fxLayoutAlign="start center" >
-          <button type="button" aria-label="Toggle sidenav" class="toolbar-button"
+        <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+          <button type="button" aria-label="Toggle sidenav" class="toolbar-button"  
                   mat-icon-button (click)="drawer.toggle()">
-            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon><span> Lab</span>
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
-     
+          <button mat-icon-button color="white" aria-label="Example icon button with a home icon" routerLink="/home"  >
+            <mat-icon>home</mat-icon>
+          </button>
+          
         </div>
-
-             
         <div fxFlex></div>
-  
-        <div class="toolbar-separator"></div>
-        
-       <button [matMenuTriggerFor]="userMenu" class="toolbar-button" mat-button style="margin-left: 85%; margin-right: 5%;">
-          <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!!user">
-               <img class="avatar mr-0 mr-sm-16" src="{{user.photoURL}}" style="border-radius: 50px; width: 40px;height: 40px;"/>
-            <span class="username mx-12" fxHide fxShow.gt-sm>{{user.displayName}}</span>
-            <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
-          </div>
-        </button>
-
-        <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
-
-          <button class="" mat-menu-item >
-            <mat-icon>account_box</mat-icon>
-            <span>Profile</span>
+        <div fxFlex fxLayout="row" fxLayoutAlign="end center">
+         
+          <button mat-icon-button color="white" aria-label="Example icon button with a logout icon" (click)="logout()"   >
+            <mat-icon>logout</mat-icon>
           </button>
-          <button (click)="LOGOUT()" class="" mat-menu-item >
-            <mat-icon>exit_to_app</mat-icon>
-            <span>Logout</span>
-          </button>
-
-        </mat-menu>
+        </div>
       </mat-toolbar>
   
       <div class="content mt-80 mx-16">
-        <br>
-       
         <router-outlet></router-outlet>
-  
       </div>
-  
     </mat-sidenav-content>
     <!-- EO: Side nav content-->
   

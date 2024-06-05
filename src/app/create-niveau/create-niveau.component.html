@@ -1,12 +1,15 @@
-<h2>Créer un Niveau</h2>
-
+<br>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Créer un Niveau</h2>
+<br>
 <form [formGroup]="form" (ngSubmit)="createNiveau()" style="width: 100%;">
   <mat-form-field style="width: 100%;">
-    <mat-label>Nom du niveau</mat-label>
+    <mat-label>Nom du Niveau</mat-label>
     <input matInput placeholder="Nom du niveau" formControlName="Nom_niveau">
   </mat-form-field>
 
-  <button mat-button routerLink="/niveaux">Retour à la Liste</button>
-
-  <button mat-raised-button type="submit" color="primary">Soumettre</button>
-</form>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+    <button routerLink="/niveaux" mat-raised-button color="warn">Retour</button> 
+   </div>
+</form><br></div>

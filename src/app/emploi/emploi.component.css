@@ -1,0 +1,83 @@
+/* Style pour la table */
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 0 auto;
+
+}
+
+/* Style pour les cellules de la table */
+td, th {
+  border: 1px solid #d7a6a6;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Style pour l'en-tÃªte de la table */
+th {
+  background-color: #e10f7f;
+}
+
+/* Style pour les lignes impaires de la table */
+tr:nth-child(odd) {
+  background-color:  #454242;
+}
+
+/* Style pour les lignes paires de la table */
+tr:nth-child(even) {
+  background-color: #454242;
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #282525;
+}
+
+ h2 {
+  margin-bottom: 20px;
+  color: #e0d9d9;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+form label, form select {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  flex: 1;
+  padding: 10px 20px;
+  background-color: #e10f7f;
+  color: #958787;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #38434f;
+}
+
+button[type="submit1"] {
+  padding: 10px 20px;
+  background-color: #e10f7f;
+  color: #958787;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+  
+}
+
+button[type="submit1"]:hover {
+  background-color: #4f3838;
+
+}

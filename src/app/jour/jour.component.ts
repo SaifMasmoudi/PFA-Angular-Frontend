@@ -39,8 +39,5 @@ export class JourComponent implements OnInit {
     
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    // Apply your filtering logic here if needed
-  }
+ 
 }

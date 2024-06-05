@@ -1,9 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="end center">
+<br><br><div fxLayout="row" fxLayoutAlign="end center">
   <button routerLink="/create-prime" mat-raised-button color="primary">Ajouter une Nouvelle Prime</button>
 </div>
 
 <mat-form-field>
-  <mat-label>Filtrer</mat-label>
+  <mat-label>Chercher une prime</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Prime de 1000€" #input>
 </mat-form-field>
 

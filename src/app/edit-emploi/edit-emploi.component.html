@@ -1,26 +1,21 @@
-<h1>Éditer un Emploi</h1>
+<div class="container" *ngIf="selectedEmploi">
+    <h2>Edit Emploi</h2>
+    <form (ngSubmit)="updateEmploi()">
+      <label for="id_jour">Jour ID:</label>
+      <input type="number" id="id_jour" [(ngModel)]="selectedEmploi.id_jour" name="id_jour" required>
 
-<form (ngSubmit)="updateEmploi()">
-  <div>
-    <label for="id_jour">ID Jour:</label>
-    <input type="number" id="id_jour" [(ngModel)]="emploi.id_jour" name="id_jour" required>
-  </div>
-  <div>
-    <label for="id_heure">ID Heure:</label>
-    <input type="number" id="id_heure" [(ngModel)]="emploi.id_heure" name="id_heure" required>
-  </div>
-  <div>
-    <label for="id_salle">ID Salle:</label>
-    <input type="number" id="id_salle" [(ngModel)]="emploi.id_salle" name="id_salle" required>
-  </div>
-  <div>
-    <label for="id_annee">ID Année:</label>
-    <input type="number" id="id_annee" [(ngModel)]="emploi.id_annee" name="id_annee" required>
-  </div>
-  <div>
-    <label for="id_charge_horaire">ID Charge Horaire:</label>
-    <input type="number" id="id_charge_horaire" [(ngModel)]="emploi.id_charge_horaire" name="id_charge_horaire" required>
-  </div>
+      <label for="id_heure">Heure ID:</label>
+      <input type="number" id="id_heure" [(ngModel)]="selectedEmploi.id_heure" name="id_heure" required>
 
-  <button type="submit">Mettre à jour</button>
-</form>
+      <label for="id_salle">Salle ID:</label>
+      <input type="number" id="id_salle" [(ngModel)]="selectedEmploi.id_salle" name="id_salle" required>
+
+      <label for="id_annee">Annee ID:</label>
+      <input type="number" id="id_annee" [(ngModel)]="selectedEmploi.id_annee" name="id_annee" required>
+
+      <label for="id_charge_horaire">Charge Horaire ID:</label>
+      <input type="number" id="id_charge_horaire" [(ngModel)]="selectedEmploi.id_charge_horaire" name="id_charge_horaire" required>
+
+      <button type="submit">Update Emploi</button>
+    </form>
+  </div>

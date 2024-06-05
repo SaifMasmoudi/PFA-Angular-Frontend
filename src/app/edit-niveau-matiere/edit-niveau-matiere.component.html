@@ -1,9 +1,13 @@
-<div *ngIf="niveauMatiereToEdit">
+<br>
+  <div fxLayout="column" fxLayoutAlign="center center">
   <h2>Éditer un Niveau-Matière</h2>
-  <form [formGroup]="form" (ngSubmit)="updateNiveauMatiere()">
+  <br>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="updateNiveauMatiere()" *ngIf="niveauMatiereToEdit">
     <div class="form-field">
-      <mat-form-field>
-        <mat-label>Niveau:</mat-label>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Niveau  : </mat-label>
         <mat-select formControlName="id_niveau" required>
           <mat-option *ngFor="let niveau of niveaux" [value]="niveau.id">{{ niveau.nom_niveau }}</mat-option>
         </mat-select>
@@ -11,16 +15,18 @@
     </div>
 
     <div class="form-field">
-      <mat-form-field>
-        <mat-label>Matière:</mat-label>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Matière  : </mat-label>
         <mat-select formControlName="id_matiere" required>
           <mat-option *ngFor="let matiere of matieres" [value]="matiere.id">{{ matiere.nom_matiere }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
-    <button mat-raised-button type="submit" color="primary">Mettre à jour</button>
-  </form>
-</div>
+    <div fxLayout="row" fxLayoutGap="16px">
+      <button mat-raised-button type="submit" color="primary">Soumettre</button>
+      <button routerLink="/niveau-matieres" mat-raised-button color="warn">Retour</button> 
+    </div> 
+  </form><br>
 
-<button mat-button routerLink="/niveau-matieres">Retour à la Liste</button>
+

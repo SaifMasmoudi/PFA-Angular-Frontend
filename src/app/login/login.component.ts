@@ -8,10 +8,16 @@ import { AuthService } from 'src/Services/AuthService (2)';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private AUTH:AuthService,private router:Router){}
-  SIGNIN():void{
-    this.AUTH.doGoogleLogin().then(()=>{
-      this.router.navigate(['/members'])
-    })
+  username: string = '';
+  password: string = '';
+
+  constructor(private authService: AuthService, private router: Router) { }
+
+  login() {
+    if (this.authService.login(this.username, this.password)) {
+      this.router.navigate(['/home']);
+    } else {
+      alert('Invalid credentials');
+    }
   }
   }

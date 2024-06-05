@@ -43,8 +43,12 @@ import { CreateJourComponent } from './create-jour/create-jour.component';
 import { HoraireComponent } from './horaire/horaire.component';
 import { CreateHoraireComponent } from './create-horaire/create-horaire.component';
 import { EditHoraireComponent } from './edit-horaire/edit-horaire.component';
+import { HomeComponent } from './home/home.component';
+import { AuthGuardService } from 'src/Services/auth-guard.service';
 const routes: Routes = [
   { path: 'login', pathMatch: 'full', component: LoginComponent },
+
+  { path: 'home', pathMatch: 'full', component: HomeComponent },
 
   { path: 'groupes', component: GroupeComponent },
   { path: 'create-groupe', component: CreateGroupeComponent },
@@ -91,9 +95,9 @@ const routes: Routes = [
   { path: 'create-annee-universitaire', component: CreateAnneeUniversitaireComponent },
   { path: 'edit-annee-universitaire/:nom_annee', component: EditAnneeUniversitaireComponent },
 
-  { path: 'emplois', component: EmploiComponent },
-  { path: 'emplois/create', component: CreateEmploiComponent },
-  { path:  'emplois/edit/:id', component: EditEmploiComponent },
+  { path: 'emploi', component: EmploiComponent },
+  { path: 'emploi/create', component: CreateEmploiComponent },
+  { path:  'emploi/edit/:id', component: EditEmploiComponent },
 
   { path: 'jours', component: JourComponent },
   { path: 'jours/create', component: CreateJourComponent },
@@ -104,6 +108,10 @@ const routes: Routes = [
   { path: 'horaires', component: HoraireComponent },
   { path: 'horaires/create', component: CreateHoraireComponent },
   { path: 'horaires/edit/:id', component: EditHoraireComponent },
+
+
+
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -1,31 +1,109 @@
-<h1>Liste des Emplois</h1>
+<br><br><div class="container">
+  <h2>Create New Emploi</h2>
+  <form (ngSubmit)="addEmploi()">
+      <label for="id_jour">Jour:</label>
+      <select id="id_jour" [(ngModel)]="newEmploi.id_jour" name="id_jour" required>
+          <option *ngFor="let jour of jours" [value]="jour.id">{{ jour.nom }}</option>
+      </select>
+
+      <label for="id_heure">Heure:</label>
+      <select id="id_heure" [(ngModel)]="newEmploi.id_heure" name="id_heure" required>
+          <option *ngFor="let horaire of horaires" [value]="horaire.id">{{ horaire.heure }}</option>
+      </select>
+
+      <label for="id_salle">Salle:</label>
+      <select id="id_salle" [(ngModel)]="newEmploi.id_salle" name="id_salle" required>
+          <option *ngFor="let salle of salles" [value]="salle.id">{{ salle.num_salle }}</option>
+      </select>
+
+      <label for="id_annee">Année Universitaire:</label>
+      <select id="id_annee" [(ngModel)]="newEmploi.id_annee" name="id_annee" required>
+          <option *ngFor="let annee of anneesUniversitaires" [value]="annee.nom_annee">{{ annee.nom_annee }}</option>
+      </select>
+
+      <label for="id_enseignant">Enseignant:</label>
+      <select id="id_enseignant" [(ngModel)]="newEmploi.id_charge_horaire" name="id_charge_horaire" required>
+          <option *ngFor="let chargeHoraire of chargesHoraires" [value]="chargeHoraire.id">
+              {{ getEnseignantName(chargeHoraire.id_enseignant) }}
+          </option>
+      </select>
+
+      <label for="id_matiere">Matière:</label>
+      <select id="id_matiere" [(ngModel)]="newEmploi.id_charge_horaire" name="id_charge_horaire" required>
+          <option *ngFor="let chargeHoraire of chargesHoraires" [value]="chargeHoraire.id">
+              {{ getMatiereLabel(chargeHoraire.id_enseignant) }}
+          </option>
+      </select>
+
+      <label for="id_groupe">Groupe:</label>
+      <select id="id_groupe" [(ngModel)]="newEmploi.id_charge_horaire" name="id_charge_horaire" required>
+          <option *ngFor="let chargeHoraire of chargesHoraires" [value]="chargeHoraire.id">
+              {{ getGroupName(chargeHoraire.id_enseignant) }}
+          </option>
+      </select>
+
+      <button type="submit">Add Emploi</button>
+  </form>
+</div>
+
+<br><br>
 
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>ID Jour</th>
-      <th>ID Heure</th>
-      <th>ID Salle</th>
-      <th>ID Année</th>
-      <th>ID Charge Horaire</th>
-      <th>Actions</th>
+      <th>Jour</th>
+      <th>Heure</th>
+      <th>Salle</th>
+      <th>Enseignant</th>
+      <th>Matière</th>
+      <th>Groupe</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let emploi of emplois">
-      <td>{{ emploi.id }}</td>
-      <td>{{ emploi.id_jour }}</td>
-      <td>{{ emploi.id_heure }}</td>
-      <td>{{ emploi.id_salle }}</td>
-      <td>{{ emploi.id_annee }}</td>
-      <td>{{ emploi.id_charge_horaire }}</td>
-      <td>
-        <a [routerLink]="['/emplois/edit', emploi.id]">Éditer</a>
-        <button  *ngIf="emploi.id !== undefined" (click)="deleteEmploi(emploi.id)">Supprimer</button>
-      </td>
+      <td>{{ getJourName(emploi.id_jour) }}</td>
+      <td>{{ getHeureLabel(emploi.id_heure) }}</td>
+      <td>{{ getSalleNumber(emploi.id_salle) }}</td>
+      <td>{{ getEnseignantNameFromChargeHoraire(emploi.id_charge_horaire) }}</td>
+      <td>{{ getMatiereLabelFromChargeHoraire(emploi.id_charge_horaire) }}</td>
+      <td>{{ getGroupName(emploi.id_charge_horaire) }}</td>
     </tr>
   </tbody>
 </table>
 
-<a [routerLink]="['/emplois/create']">Créer un Emploi</a>
+<br><br><br>
+<div class="container">
+  <h2>Sélectionner un Enseignant</h2>
+  <form (ngSubmit)="loadEmploiForEnseignant()">
+    <label for="id_enseignant">Enseignant:</label>
+    <select id="id_enseignant" [(ngModel)]="selectedEnseignant" name="id_enseignant" required>
+        <option *ngFor="let enseignant of enseignants" [value]="enseignant.id">{{ enseignant.nom_enseignant }}</option>
+    </select>
+    <button type="submit">Charger Emploi</button>
+  </form>
+</div>
+<div id="emploiTable">
+  <h2>Emploi Enseignant</h2>
+  <button (click)="printEmploi()" type="submit1">Imprimer Emploi</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Jour / Horaire</th>
+        <th *ngFor="let horaire of horaires">{{ horaire.heure }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let jour of jours; let i = index">
+        <td>{{ jour.nom }}</td>
+        <td *ngFor="let horaire of horaires; let j = index">
+          <ng-container *ngIf="emploiTable[i][j]">
+            <div>Salle: {{ getSalleNumber(emploiTable[i][j].id_salle) }}</div>
+            <div>Enseignant: {{ getEnseignantNameFromChargeHoraire(emploiTable[i][j].id_charge_horaire) }}</div>
+            <div>Matière: {{ getMatiereLabelFromChargeHoraire(emploiTable[i][j].id_charge_horaire) }}</div>
+            <div>Groupe: {{ getGroupName(emploiTable[i][j].id_charge_horaire) }}</div>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

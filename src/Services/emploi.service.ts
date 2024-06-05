@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Emploi } from 'src/Modeles/Emploi';
@@ -12,16 +12,16 @@ export class EmploiService {
 
   constructor(private http: HttpClient) { }
 
-  getAllEmplois(): Observable<Emploi[]> {
+  getEmplois(): Observable<Emploi[]> {
     return this.http.get<Emploi[]>(this.apiUrl);
   }
 
-  getEmploiById(id: number): Observable<Emploi> {
+  getEmploi(id: number): Observable<Emploi> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Emploi>(url);
   }
 
-  createEmploi(emploi: Emploi): Observable<Emploi> {
+  addEmploi(emploi: Emploi): Observable<Emploi> {
     return this.http.post<Emploi>(this.apiUrl, emploi);
   }
 
@@ -30,33 +30,38 @@ export class EmploiService {
     return this.http.put<Emploi>(url, emploi);
   }
 
-  deleteEmploi(id: number): Observable<any> {
+  deleteEmploi(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.delete(url);
+    return this.http.delete<void>(url);
   }
 
-  getEmploisBySalle(idsalle: number): Observable<Emploi[]> {
-    const url = `${this.apiUrl}/emp/${idsalle}`;
+  // Additional methods for filtering
+  getEmploisBySalle(idSalle: number): Observable<Emploi[]> {
+    const url = `${this.apiUrl}/salle/${idSalle}`;
     return this.http.get<Emploi[]>(url);
   }
 
-  getEmploisByAnnee(idannee: number): Observable<Emploi[]> {
-    const url = `${this.apiUrl}/emp/${idannee}`;
+  getEmploisByAnnee(idAnnee: number): Observable<Emploi[]> {
+    const url = `${this.apiUrl}/annee/${idAnnee}`;
     return this.http.get<Emploi[]>(url);
   }
 
-  getEmploisByJour(idjour: number): Observable<Emploi[]> {
-    const url = `${this.apiUrl}/emp/${idjour}`;
+  getEmploisByJour(idJour: number): Observable<Emploi[]> {
+    const url = `${this.apiUrl}/jour/${idJour}`;
     return this.http.get<Emploi[]>(url);
   }
 
-  getEmploisByHeure(idheure: number): Observable<Emploi[]> {
-    const url = `${this.apiUrl}/emp/${idheure}`;
+  getEmploisByHeure(idHeure: number): Observable<Emploi[]> {
+    const url = `${this.apiUrl}/heure/${idHeure}`;
     return this.http.get<Emploi[]>(url);
   }
 
-  getEmploisByChargeHoraire(idcharge: number): Observable<Emploi[]> {
-    const url = `${this.apiUrl}/emp/${idcharge}`;
+  getEmploisByChargeHoraire(idCharge: number): Observable<Emploi[]> {
+    const url = `${this.apiUrl}/charge/${idCharge}`;
     return this.http.get<Emploi[]>(url);
   }
+  getEmploisByEnseignant(idEnseignant: number): Observable<Emploi[]> {
+    return this.http.get<Emploi[]>(`${this.apiUrl}/emplois/enseignant/${idEnseignant}`);
+  }
+
 }

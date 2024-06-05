@@ -1,15 +1,21 @@
-<h2>Ajouter une Nouvelle Matière</h2>
+<br>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Creer une Nouvelle Matière</h2>
+  <br>
+</div>
 
-<form [formGroup]="form" (ngSubmit)="createMatiere()">
-  <mat-form-field style="width: 100%;">
-    <mat-label>Nom de la Matière</mat-label>
-    <input matInput placeholder="Nom de la Matière" formControlName="nom_matiere" required>
-  </mat-form-field>
-  <mat-form-field style="width: 100%;">
-    <mat-label>Description</mat-label>
-    <textarea matInput placeholder="Description" formControlName="description" required></textarea>
-  </mat-form-field>
-  <button mat-raised-button type="submit" color="primary">Ajouter Matière</button>
-</form>
-
-<button mat-button routerLink="/matieres">Retour à la Liste</button>
+  <form [formGroup]="form" (ngSubmit)="createMatiere()">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Nom de la Matière</mat-label>
+      <input matInput placeholder="Nom de la Matière" formControlName="nom_matiere" required>
+    </mat-form-field>
+    <mat-form-field style="width: 100%;">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description" formControlName="description" required></textarea>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="16px">
+      <button mat-raised-button type="submit" color="primary">Soumettre</button>
+      <button routerLink="/matieres" mat-raised-button color="warn">Retour</button> 
+    </div>
+  </form>
+  <br>

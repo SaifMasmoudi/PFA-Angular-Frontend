@@ -15,7 +15,10 @@ export class EnseignantService {
   getAllEnseignants(): Observable<Enseignant[]> {
     return this.http.get<Enseignant[]>(this.apiUrl);
   }
-
+  getEnseignantsByNiveauMatiere(idNiveauMatiere: number): Observable<Enseignant[]> {
+    const url = `${this.apiUrl}/niveau-matiere/${idNiveauMatiere}`;
+    return this.http.get<Enseignant[]>(url);
+  }
   getEnseignantById(id: number): Observable<Enseignant> {
     return this.http.get<Enseignant>(`${this.apiUrl}/${id}`);
   }

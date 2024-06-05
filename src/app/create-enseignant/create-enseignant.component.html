@@ -1,5 +1,8 @@
-<h2>Ajouter un Nouvel Enseignant</h2>
-
+<br>
+  <div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Ajouter un Nouvel Enseignant</h2>
+  <br>
+  </div>
 <form [formGroup]="form" (ngSubmit)="createEnseignant()">
   <mat-form-field style="width: 100%;">
     <mat-label>Nom :</mat-label>
@@ -21,7 +24,9 @@
     <input matInput formControlName="email" required>
   </mat-form-field>
 
-  <button mat-raised-button type="submit" color="primary">Ajouter enseignant</button>
-  <button mat-button routerLink="/enseignants">Retour à la Liste</button>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+    <button routerLink="/Enseignants" mat-raised-button color="warn">Retour</button> 
+  </div> 
 
-</form>
+</form><br>

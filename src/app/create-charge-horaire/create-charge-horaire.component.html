@@ -1,5 +1,7 @@
-<h2>Ajouter une charge horaire</h2>
 
+<br><div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Ajouter une charge horaire</h2>
+<br>
 <form (ngSubmit)="createChargeHoraire()">
   <div>
     <label for="nb_heure">Nombre d'heures :</label>
@@ -22,5 +24,8 @@
       </option>
     </select>
   </div>
-  <button type="submit">Créer</button>
-</form>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+    <button routerLink="/charge-horaires" mat-raised-button color="warn">Retour</button> 
+  </div> 
+</form><br>

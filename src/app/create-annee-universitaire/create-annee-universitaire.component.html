@@ -1,15 +1,22 @@
-<div fxLayout="column">
-  <h2>Créer une Année Universitaire</h2>
-
+<br><div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Creer une Année Universitaire</h2>
+<br>
   <form [formGroup]="form" (ngSubmit)="createAnneeUniversitaire()" style="width: 100%;">
     <mat-form-field style="width: 100%;">
       <mat-label>Nom Année</mat-label>
       <input matInput placeholder="Nom Année" formControlName="nom_annee">
     </mat-form-field>
+
     <mat-form-field style="width: 100%;">
       <mat-label>Semester</mat-label>
-      <input matInput placeholder="Semester" formControlName="semester">
+      <mat-select formControlName="semester">
+        <mat-option [value]="1">1</mat-option>
+        <mat-option [value]="2">2</mat-option>
+      </mat-select>
     </mat-form-field>
-    <button mat-raised-button type="submit" color="primary">Soumettre</button>
-  </form>
+    <div fxLayout="row" fxLayoutGap="16px">
+      <button mat-raised-button type="submit" color="primary">Soumettre</button>
+      <button routerLink="/annee-universitaire" mat-raised-button color="warn">Retour</button> 
+    </div> 
+  </form><br>
 </div>

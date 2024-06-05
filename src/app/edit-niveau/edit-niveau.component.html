@@ -1,14 +1,15 @@
-<div fxLayout="column" fxLayoutAlign="center center">
+<br><div fxLayout="column" fxLayoutAlign="center center">
   <h2>Modifier un niveau</h2>
-
+<br>
   <form [formGroup]="form" (ngSubmit)="updateNiveau()" style="width: 100%;">
     <mat-form-field style="width: 100%;">
       <mat-label>Nom du niveau</mat-label>
       <input matInput placeholder="Nom du Niveau" formControlName="nom_niveau">
     </mat-form-field>
 
-      <button mat-raised-button type="submit" color="primary">Mettre à jour</button>
-      <button mat-button routerLink="/niveaux">Retour à la Liste</button>
-
-  </form>
+      <div fxLayout="row" fxLayoutGap="16px">
+        <button mat-raised-button type="submit" color="primary">Soumettre</button>
+        <button routerLink="/niveaux" mat-raised-button color="warn">Retour</button> 
+       </div>
+  </form><br>
 </div>

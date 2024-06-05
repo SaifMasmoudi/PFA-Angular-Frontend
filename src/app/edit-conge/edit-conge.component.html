@@ -1,5 +1,8 @@
-<h2>Modifier un Congé</h2>
-
+<br>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h2>Modifier un Congé</h2>
+    <br>
+  </div>
 <form [formGroup]="congeForm" (ngSubmit)="updateConge()" class="form-container">
   <div class="form-row">
     <mat-form-field style="width: 100%;">
@@ -37,8 +40,9 @@
     </mat-form-field>
   </div>
 
-  <div class="form-actions">
-    <button mat-raised-button type="submit" color="primary">Mettre à jour</button>
-    <button mat-button routerLink="/conges">Retour à la Liste</button>
-  </div>
+  
+  <div fxLayout="row" fxLayoutGap="16px">
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+    <button routerLink="/conges" mat-raised-button color="warn">Retour</button> 
+  </div> 
 </form>

@@ -1,9 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="end center">
+<br><br><div fxLayout="row" fxLayoutAlign="end center">
   <button routerLink="/create-charge-horaire" mat-raised-button color="primary">Ajouter une charge horaire</button>
 </div>
 
 <mat-form-field>
-  <mat-label>Filtrer</mat-label>
+  <mat-label>Chercher une charge horaire</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Charge horaire de 24h" #input>
 </mat-form-field>
 

@@ -1,9 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="end center">
+<br><br><div fxLayout="row" fxLayoutAlign="end center">
   <button routerLink="/create-conge" mat-raised-button color="primary">Ajouter un congé</button>
 </div>
 
 <mat-form-field>
-  <mat-label>Filtrer</mat-label>
+  <mat-label>Chercher un congé</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Congé maladie" #input>
 </mat-form-field>
 

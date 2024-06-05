@@ -1,5 +1,8 @@
-<h2>Modifier Prime</h2>
-
+<br>
+  <div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Modifier une prime</h2>
+  <br>
+  </div>
 <form [formGroup]="form" (ngSubmit)="updatePrime()">
   <div class="form-row">
     <mat-form-field style="width: 100%;">
@@ -19,8 +22,8 @@
     </mat-form-field>
   </div>
 
-  <div class="form-row">
-    <button mat-raised-button type="submit" color="primary">Mettre à jour Prime</button>
-    <button mat-button routerLink="/primes">Annuler</button>
-  </div>
-</form>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+    <button routerLink="/primes" mat-raised-button color="warn">Retour</button> 
+  </div> 
+</form><br>

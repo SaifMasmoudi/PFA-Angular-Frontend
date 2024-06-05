@@ -1,9 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="end center">
+<br><br><div fxLayout="row" fxLayoutAlign="end center">
   <button routerLink="/create-salle" mat-raised-button color="primary">Créer Nouvelle Salle</button>
 </div>
 
 <mat-form-field>
-  <mat-label>Filter</mat-label>
+  <mat-label>Chercher une salle</mat-label> 
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Salle 101" #input>
 </mat-form-field>
 

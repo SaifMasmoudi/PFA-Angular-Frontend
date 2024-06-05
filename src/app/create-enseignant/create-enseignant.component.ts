@@ -10,7 +10,7 @@ import { EnseignantService } from 'src/Services/enseignant.service';
   styleUrls: ['./create-enseignant.component.css']
 })
 export class CreateEnseignantComponent {
-  form: FormGroup;
+  form!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,6 +25,7 @@ export class CreateEnseignantComponent {
     });
   }
 
+  
   createEnseignant(): void {
     if (this.form.valid) {
       const enseignant: Enseignant = this.form.value;

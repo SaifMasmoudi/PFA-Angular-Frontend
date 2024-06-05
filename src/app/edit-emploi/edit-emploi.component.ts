@@ -14,14 +14,8 @@ import { AnneeUniversitaireService } from 'src/Services/annee-universitaire.serv
   templateUrl: './edit-emploi.component.html',
   styleUrls: ['./edit-emploi.component.css']
 })
-export class EditEmploiComponent implements OnInit {
-  emploi: Emploi = {
-    id_jour: 0,
-    id_heure: 0,
-    id_salle: 0,
-    id_annee: 0,
-    id_charge_horaire: 0
-  };
+export class EditEmploiComponent  {
+  selectedEmploi: Emploi | null = null;
 
   constructor(
     private emploiService: EmploiService,
@@ -30,35 +24,28 @@ export class EditEmploiComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.getEmploiById(+id);
-    }
-  }
-
-  getEmploiById(id: number): void {
-    this.emploiService.getEmploiById(id).subscribe(
-      (data) => {
-        this.emploi = data;
+    const id = +this.route.snapshot.paramMap.get('id')!;
+    this.emploiService.getEmploi(id).subscribe(
+      (data: Emploi) => {
+        this.selectedEmploi = data;
       },
-      (error) => {
-        console.error('Erreur lors de la récupération de l\'emploi:', error);
+      error => {
+        console.error('There was an error!', error);
       }
     );
   }
 
   updateEmploi(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.emploiService.updateEmploi(+id, this.emploi).subscribe(
-        (data) => {
-          console.log('Emploi mis à jour:', data);
-          this.router.navigate(['/emplois']);
+    if (this.selectedEmploi) {
+      this.emploiService.updateEmploi(this.selectedEmploi.id, this.selectedEmploi).subscribe(
+        (data: Emploi) => {
+          this.router.navigate(['/emploi']);
         },
-        (error) => {
-          console.error('Erreur lors de la mise à jour de l\'emploi:', error);
+        error => {
+          console.error('There was an error!', error);
         }
       );
     }
   }
+
 }

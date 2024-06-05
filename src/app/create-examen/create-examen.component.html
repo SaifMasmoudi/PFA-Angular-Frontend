@@ -1,4 +1,7 @@
-<h2>Ajouter un examen</h2>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Ajouter un examen</h2>
+  <br>
+</div>
 
 <form [formGroup]="form" (ngSubmit)="createExamen()">
   <div class="form-row">
@@ -11,7 +14,9 @@
   <div class="form-row">
     <mat-form-field style="width: 100%;">
       <mat-label>Date de l'examen :</mat-label>
-      <input matInput type="date" formControlName="date_examen" required>
+      <input matInput [matDatepicker]="picker" formControlName="date_examen" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </div>
 
@@ -19,6 +24,7 @@
     <mat-form-field style="width: 100%;">
       <mat-label>Heure de début :</mat-label>
       <input matInput type="time" formControlName="heure_debut" required>
+      <mat-icon matSuffix>access_time</mat-icon>
     </mat-form-field>
   </div>
 
@@ -26,6 +32,7 @@
     <mat-form-field style="width: 100%;">
       <mat-label>Heure de fin :</mat-label>
       <input matInput type="time" formControlName="heure_fin" required>
+      <mat-icon matSuffix>access_time</mat-icon>
     </mat-form-field>
   </div>
 
@@ -40,11 +47,9 @@
     </mat-form-field>
   </div>
 
-  <div class="form-row">
-    <button mat-raised-button type="submit" color="primary">Ajouter examen</button>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <button mat-raised-button type="submit" color="primary">Soumettre</button>
+    <button routerLink="/examens" mat-raised-button color="warn">Retour</button>
   </div>
 </form>
-
-<div class="form-row">
-  <button mat-button routerLink="/examens">Retour à la liste</button>
-</div>
+<br>
